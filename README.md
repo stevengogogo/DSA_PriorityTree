@@ -1,98 +1,152 @@
-# CProjectTemplate
+# Priority Tree
 
-[![Ubuntu](https://github.com/stevengogogo/CProjectTemplate/actions/workflows/ci.yml/badge.svg)](https://github.com/stevengogogo/CProjectTemplate/actions/workflows/ci.yml)[![codecov](https://codecov.io/gh/stevengogogo/CProjectTemplate/branch/main/graph/badge.svg?token=5F6B6C9M1K)](https://codecov.io/gh/stevengogogo/CProjectTemplate)[![Doxygen Action](https://github.com/stevengogogo/CProjectTemplate/actions/workflows/doc.yml/badge.svg?branch=main)](https://github.com/stevengogogo/CProjectTemplate/actions/workflows/doc.yml)[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://stevengogogo.github.io/CProjectTemplate/)
+> From DSA 2021: Problem 5 - Alice's Bookshelf
 
-Project template for C programming. Including debugging in VSCODE, makefile and Unit testing (+ Github CI)
+## Problem Statement
 
-Usage
-------
+- A Bookshelf
 
-- `make BUILD`
-- `make RUN`
-- `make TEST`
+|Position|1|2|3|4|5|...|n|
+|---|---|---|---|---|---|---|---|
+|Priority|-1|0|0|3|4|...|1|
 
-
-Features
-----------
-
-- Clear structures
-    - [Source](https://github.com/stevengogogo/CProjectTemplate/blob/main/src/) and [test](https://github.com/stevengogogo/CProjectTemplate/blob/main/test/) 
-    - Header file are organized under [`src/include/`](https://github.com/stevengogogo/CProjectTemplate/blob/main/src/include) 
-    - Building with [makfile](makefile)
-- Unit testing
-     - Organized by  [`runtests.c`](test/runtest.c)
-     - Use [`acutest.h`] (https://github.com/stevengogogo/CProjectTemplate/blob/main/test/acutest.h) debugging (Courtesy from [mity/acutest](https://github.com/mity/acutest))
- - Debugger with VScode
-     - The configuration of debugger  are supported under  [`.vscode`](.vscode/) 
-
-
-Prerequist
-----------
-
-1. Vscode
-2. `build-essentials`. (Install `gdb` and xcode if you are using Mac)
-3. Linux
-4. python3.8
-5. pip
-6. `pip intall quom` (for merging to single c file) [See https://github.com/Viatorus/quom]
-
-How to use this C template
---------------------------
-
-### Build and Run with `src/main.c`
-
-```make
-make BUILD_RUN
+```julia
+struct Book{
+    position
+    priority
+}
 ```
 
-<img width="977" alt="Screen Shot 2021-02-25 at 3 04 42 PM" src="https://user-images.githubusercontent.com/29009898/109116029-db116d80-777a-11eb-883a-f10f599d5cc5.png">
+- Priority: 
+  - **not unique**
+  - When queuing books with **same priority**
+    **extract the one with least position**.
+- Position
+  - start from `1`
+  - Insert `0` means insertion at start.
+
+## Operation
+
+- `1 p k`: **insert** a `book(priority=p,position=k)`. 
+  - When `k=0`, insert at start
+- `2 k`: **Delete** the `k-th` book.
+- `3 l r p`: **Increase priorities** by `p` between `[l,r]`
+- `4 l r`: Query the **largest priority**  between `[l,r]`
+- `5 l r`: Reverse the positions between `[l,r]`
+- `6`: Remove the largest priority
 
 
-### Unit testing
+## Strategy
 
+
+### Insert
+
+**Description**
+
+
+For insert node at `book(pos=18, prio=20)`
+<center>
+<img height=250 src="https://img-blog.csdn.net/20151103185313376?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+</center>
+
+
+
+**Algorithm**
+
+1. Search and Create `pos=18` (BST serach). [`n_new`]
+2. Correct Heap
+   - **Case 1**: `n_new.key` < `n_new.parent.key`
+     - Do nothing
+   - **Case 2**: `n_new.key` > `n_new.parent.key` and `n_new` is on the right
+     - `LeftRotate(n_new.parent)` to pick `n_new` up
+     - Repeat 2.
+   - **Case 3**: invert left right in **Case 3**  
+
+
+
+**Complexity**
+
+
+
+### Delete
+
+**Description**
+**Algorithm**
+**Complexity**
+
+
+
+### Increase Priority
+
+**Description**
+
+
+**Algorithm**
+
+
+**Complexity**
+
+
+
+### Query largest
+
+**Description**
+- Query the largest priority between the positions `l` and `r`.
+    ```c
+    Query(l, r)
+    ```
+
+**Algorithm**
+
+1. Search first element in [l,r]
+   ```c
+   node search_node_in_region(root, l, r)
+   ```
+
+
+
+**Complexity**
+
+### Reverse order
+**Description**
+**Algorithm**
+**Complexity**
+
+
+
+## Helper functions
+
+[fa](#helper-functions)
+
+
+
+---
+
+## Note
+
+### Invet Binary Tree
+
+```python
+class Solution:
+    def invertTree(self, root):
+        if root is None:
+            return None
+        root.left, root.right = \
+            self.invertTree(root.right), self.invertTree(root.left)
+        return root
 ```
-make TEST
-```
 
-<img width="924" alt="Screen Shot 2021-02-25 at 3 04 06 PM" src="https://user-images.githubusercontent.com/29009898/109116100-f7150f00-777a-11eb-9de0-88eaef70a222.png">
+1. [LeetCode](https://leetcode.com/problems/invert-binary-tree/solution/)
 
+### Treap Data Structure
 
-### Set workspace to this project 
-<img width="400" alt="Workspace" src="https://user-images.githubusercontent.com/29009898/109115183-a5b85000-7779-11eb-97b2-1cde0b306cdb.png">
-
-### Use the debugger icon on  VScode
-<img width="2560" alt="GDB usage" src="https://user-images.githubusercontent.com/29009898/109115199-abae3100-7779-11eb-8c21-bc4d98be52a7.png">
-
-### Gihub CD (Continuouse Documentation)
-See [issue](https://github.com/stevengogogo/CProjectTemplate/issues/5) for tutorial 
-
-### Continuous Integration (CI)
-
-- Run unit testing on every push and PR [Thank @sosiristseng]
-
-### Continusous Deployment (CD)
-
-- Merged to single `main.c` file when tagging or releasing. [Thank @sosiristseng]
+> A treap is a binary tree that maintains simultaneously the property of binary search tree (BST) and heap.
 
 
-### Memory Leak Detection with Valgrind
+**Ref:** 
+1. [medium](https://medium.com/carpanese/a-visual-introduction-to-treap-data-structure-part-1-6196d6cc12ee)
+2. [Treap. Wiki](https://en.wikipedia.org/wiki/Treap)
+3. [Treap. CP-Aglorithms](https://cp-algorithms.com/data_structures/treap.html)
+4. [Treap. ITREAD](https://www.itread01.com/content/1545721233.html)
 
-- The test file is set as `test/buil/test.out` 
-- If you want to test `main.c`, it can be set simply by modifying the `makefile`
 
-- Leakage during test
-```make
-LEAK: TEST
-	valgrind --leak-check=full --show-leak-kinds=all --verbose ./test/build/test.out
-```
-- Leakage in `main.c`
-```make
-LEAK: BUILD
-	valgrind --leak-check=full --show-leak-kinds=all --verbose ./build/main.out
-```
-
-- noted that if `main.out` needs input. Use following command
-```make
-LEAK: BUILD
-	valgrind --leak-check=full --show-leak-kinds=all --verbose ./build/main.out < path2data.in
-```
