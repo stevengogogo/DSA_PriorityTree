@@ -4,14 +4,14 @@
 
 ## Problem Statement
 
-- A Bookshelf
+- **A Bookshelf**
 
     |Position|1|2|3|4|5|...|n|
     |---|---|---|---|---|---|---|---|
     |Priority|-1|0|0|3|4|...|1|
 
 
-- A book
+- **A book**
     ```julia
     struct Book{
         position
@@ -19,11 +19,11 @@
     }
     ```
 
-- Priority: 
+- **Priority** 
   - **not unique**
   - When queuing books with **same priority**
     **extract the one with least position**.
-- Position
+- **Position**
   - start from `1`
   - Insert `0` means insertion at start.
 
