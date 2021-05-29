@@ -24,7 +24,7 @@
   - When queuing books with **same priority**
     **extract the one with least position**.
 - **Position**
-  - start from `1`
+  - Start from `1`
   - Insert `0` means insertion at start.
 
 ## Operation
@@ -118,7 +118,41 @@ For insert node at `book(pos=18, prio=20)`
 
 ## Helper functions
 
-[fa](#helper-functions)
+#### Get first position
+- Leftist position under root `x`
+    ```cpp
+    node FirstPosition(x)
+        while x.left != NULL
+            x = x.left
+        return x
+    end
+    ```
+
+#### Search Position
+
+- Record **Number of nodes under node x**
+
+#### Search Highest Priority
+
+- Search node with key=`x` within `[lp, hp]` with **highest level**. Return `NULL` if not item found.
+    ```cpp
+    node TreeSearchDomain(x, lp, hp)
+        if x == NULL
+            return x
+        else if isBelong(x,lp,hp)
+            return x
+        else if x > max(lp,hp)
+            return TreeSearchDomain(x.right, lp,hp)
+        else 
+            return TreeSearchDomain(x.left, lp,hp)
+    end
+    ```
+- Usage
+  - Query the largest books between position `l` and `r`
+- Time
+  - `O(log n)`
+- Ref: Binary search in BST
+
 
 
 
@@ -152,3 +186,14 @@ class Solution:
 4. [Treap. ITREAD](https://www.itread01.com/content/1545721233.html)
 
 
+## Reference
+
+- Invert BST: https://afteracademy.com/blog/invert-a-binary-tree
+- Cartesian heaps:https://cp-algorithms.com/data_structures/treap.html
+
+### Treap and Implicity Treap
+1. [Treap (Cartesian tree). CP-Algorithm](https://cp-algorithms.com/data_structures/treap.html#toc-tgt-1)
+2. [Treaps : One Tree to Rule ’em all ..!! Part-1](https://tanujkhattar.wordpress.com/2016/01/10/treaps-one-tree-to-rule-em-all-part-1/)
+3. [Treaps : One Tree to Rule ’em all ..!! Part-2](https://tanujkhattar.wordpress.com/2016/01/10/treaps-one-tree-to-rule-em-all-part-2/)
+4. [Episode 30 - Treaps. YouTube](https://youtu.be/erKlLEXLKyY?t=1785)
+5. [A Visual Introduction to Treap Data Structure (Part I: The Basics). Medium](https://medium.com/carpanese/a-visual-introduction-to-treap-data-structure-part-1-6196d6cc12ee)
