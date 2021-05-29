@@ -6,16 +6,18 @@
 
 - A Bookshelf
 
-|Position|1|2|3|4|5|...|n|
-|---|---|---|---|---|---|---|---|
-|Priority|-1|0|0|3|4|...|1|
+    |Position|1|2|3|4|5|...|n|
+    |---|---|---|---|---|---|---|---|
+    |Priority|-1|0|0|3|4|...|1|
 
-```julia
-struct Book{
-    position
-    priority
-}
-```
+
+- A book
+    ```julia
+    struct Book{
+        position
+        priority
+    }
+    ```
 
 - Priority: 
   - **not unique**
