@@ -43,7 +43,7 @@ tnode* build_treap(int* p, int len){
 void Insert(tnode*t, int p, int k){
     //set new node
     tnode* newt = setNewNode(p,k);
-    _Insert(t, newt);
+    _Insert(&t, newt);
 }
 
 
@@ -62,16 +62,19 @@ tnode* setNewNode(int p, int k){
     return newt;
 }
 
-void _Insert(tnode*t, tnode* newt){
-    if(t==NULL)
-        t = newt;
+void _Insert(tnode**T, tnode* newt){
+    tnode* t = *T;
+    if(t==NULL){
+        *T = newt;
+        return;
+    }
     
     tnode* l = NULL;
     tnode* r = NULL;
 
-    split(t, l, r, newt->key-1, 0);
-    merge(l, l, newt);
-    merge(t, l, r);
+    split(t, &l, &r, newt->key-1, 0);
+    merge(&l, l, newt);
+    merge(&t, l, r);
 }
 
 // Memory Management
@@ -104,7 +107,9 @@ void push(tnode*t){
 }
 
 // Split and Merge
-void split(tnode* t, tnode* lt, tnode* rt, int key, int add){
+void split(tnode* t, tnode** LT, tnode** RT, int key, int add){
+    tnode* lt = *LT;
+    tnode* rt = *RT;
     if (t == NULL){
         lt=rt=NULL;
         return;
@@ -113,36 +118,37 @@ void split(tnode* t, tnode* lt, tnode* rt, int key, int add){
     int ik = add + size(t->leaf[LEFT]); //implicit key
 
     if(ik <= key){ //key is on the right
-        split(t->leaf[RIGHT], t->leaf[RIGHT], rt, key, ik+1);
+        split(t->leaf[RIGHT], &t->leaf[RIGHT], &rt, key, ik+1);
         lt = t;
     }
     else{
-        split(t->leaf[LEFT], lt, t->leaf[LEFT] ,key, add);
+        split(t->leaf[LEFT], &lt, &t->leaf[LEFT] ,key, add);
         rt = t;
     }
 
     updateRoot(t);
 }
 
-void merge(tnode* t, tnode* lt, tnode* rt){
+void merge(tnode** t, tnode* lt, tnode* rt){
+    tnode* T = *t;
     push(lt);
     push(rt);
 
     if(lt == NULL)
-        t = rt; return;
+        T = rt; return;
     if(rt == NULL)
-        t = lt; return;
+        T = lt; return;
     
     if(lt->priority > rt->priority){
-        merge(lt->leaf[RIGHT], lt->leaf[RIGHT], rt);
-        t = lt;
+        merge(&lt->leaf[RIGHT], lt->leaf[RIGHT], rt);
+        T = lt;
     }
     else{
-        merge(rt->leaf[LEFT], lt, rt->leaf[LEFT]);
-        t = rt;
+        merge(&rt->leaf[LEFT], lt, rt->leaf[LEFT]);
+        T = rt;
     }
 
-    updateRoot(t);
+    updateRoot(T);
 }
 
 //node info
