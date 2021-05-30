@@ -52,6 +52,26 @@ void split(tnode* t, tnode* lt, tnode* rt, int key, int add){
     Operate(t);
 }
 
+void merge(tnode* t, tnode* lt, tnode* rt){
+    push(lt);
+    push(rt);
+
+    if(lt == NULL)
+        t = rt; return;
+    if(rt == NULL)
+        t = lt; return;
+    
+    if(lt->priority > rt->priority){
+        merge(lt->leaf[RIGHT], lt->leaf[RIGHT], rt);
+        t = lt;
+    }
+    else{
+        merge(rt->leaf[LEFT], lt, rt->leaf[LEFT]);
+        t = rt;
+    }
+
+}
+
 //node info
 int size(tnode* t){
     if(t!=NULL)

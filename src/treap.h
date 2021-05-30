@@ -53,6 +53,13 @@ void push(tnode* t);
 // Split and Merge
 void split(tnode* t, tnode* lt, tnode* rt, int key, int add);
 
+/**
+ * @brief Merge two treaps. Assume all kets in rt > lt
+ * @param t new root
+ * @param lt treap with smaller keys
+ * @param rt treap with larger keys
+ */
+void merge(tnode* t, tnode* lt, tnode* rt);
 
 
 //node info
