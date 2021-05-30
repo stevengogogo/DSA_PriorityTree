@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cprojecttemplate_5',['CProjectTemplate',['../index.html',1,'']]]
+  ['priority_20tree_17',['Priority Tree',['../index.html',1,'']]]
 ];

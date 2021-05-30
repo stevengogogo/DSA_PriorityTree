@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>C Project Template: CProjectTemplate</title>
+<title>C Project Template: Priority Tree</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,90 +62,457 @@ $(function() {
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">CProjectTemplate </div>  </div>
+<div class="title">Priority Tree </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a> <a href="https://github.com/stevengogogo/CProjectTemplate/actions/workflows/ci.yml"><img src="https://github.com/stevengogogo/CProjectTemplate/actions/workflows/ci.yml/badge.svg" alt="Ubuntu" style="pointer-events: none;" class="inline"/></a><a href="https://codecov.io/gh/stevengogogo/CProjectTemplate"><img src="https://codecov.io/gh/stevengogogo/CProjectTemplate/branch/main/graph/badge.svg?token=5F6B6C9M1K" alt="codecov" style="pointer-events: none;" class="inline"/></a><a href="https://github.com/stevengogogo/CProjectTemplate/actions/workflows/doc.yml"><img src="https://github.com/stevengogogo/CProjectTemplate/actions/workflows/doc.yml/badge.svg?branch=main" alt="Doxygen Action" style="pointer-events: none;" class="inline"/></a><a href="https://stevengogogo.github.io/CProjectTemplate/"><img src="https://img.shields.io/badge/docs-dev-blue.svg" alt="Dev" style="pointer-events: none;" class="inline"/></a></p>
-<p>Project template for C programming. Including debugging in VSCODE, makefile and Unit testing (+ Github CI)</p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a> </p><blockquote class="doxtable">
+<p>From DSA 2021: Problem 5 - Alice's Bookshelf </p>
+</blockquote>
 <h1><a class="anchor" id="autotoc_md1"></a>
-Usage</h1>
+Problem Statement</h1>
 <ul>
-<li><code>make BUILD</code></li>
-<li><code>make RUN</code></li>
-<li><code>make TEST</code></li>
+<li><b>A Bookshelf</b></li>
+</ul>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Position   </th><th class="markdownTableHeadNone">1   </th><th class="markdownTableHeadNone">2   </th><th class="markdownTableHeadNone">3   </th><th class="markdownTableHeadNone">4   </th><th class="markdownTableHeadNone">5   </th><th class="markdownTableHeadNone">...   </th><th class="markdownTableHeadNone">n    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Priority   </td><td class="markdownTableBodyNone">-1   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">...   </td><td class="markdownTableBodyNone">1   </td></tr>
+</table>
+<ul>
+<li><b>A book</b> ```julia struct Book{ position priority } ```</li>
+<li><b>Priority</b><ul>
+<li><b>not unique</b></li>
+<li>When queuing books with <b>same priority</b> <b>extract the one with least position</b>.</li>
+</ul>
+</li>
+<li><b>Position</b><ul>
+<li>Start from <code>1</code></li>
+<li>Insert <code>0</code> means insertion at start.</li>
+</ul>
+</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md2"></a>
-Features</h1>
+Operation</h1>
 <ul>
-<li>Clear structures<ul>
-<li><a href="https://github.com/stevengogogo/CProjectTemplate/blob/main/src/">Source</a> and <a href="https://github.com/stevengogogo/CProjectTemplate/blob/main/test/">test</a></li>
-<li>Header file are organized under <a href="https://github.com/stevengogogo/CProjectTemplate/blob/main/src/include"><code>src/include/</code></a></li>
-<li>Building with [makfile](makefile)</li>
+<li><code>1 p k</code>: <b>insert</b> a <code>book(priority=p,position=k)</code>.<ul>
+<li>When <code>k=0</code>, insert at start</li>
 </ul>
 </li>
-<li>Unit testing<ul>
-<li>Organized by <a href="test/runtest.c"><code>runtests.c</code></a></li>
-<li>Use <a href="https://github.com/stevengogogo/CProjectTemplate/blob/main/test/acutest.h"><code>acutest.h</code></a> debugging (Courtesy from <a href="https://github.com/mity/acutest">mity/acutest</a>)</li>
-</ul>
-</li>
-</ul>
-<p>Debugger with VScode</p><ul>
-<li>The configuration of debugger are supported under <a href=".vscode/"><code>.vscode</code></a></li>
+<li><code>2 k</code>: <b>Delete</b> the <code>k-th</code> book.</li>
+<li><code>3 l r p</code>: <b>Increase priorities</b> by <code>p</code> between <code>[l,r]</code></li>
+<li><code>4 l r</code>: Query the <b>largest priority</b> between <code>[l,r]</code></li>
+<li><code>5 l r</code>: Reverse the positions between <code>[l,r]</code></li>
+<li><code>6</code>: Remove the largest priority</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md3"></a>
-Prerequist</h1>
+Strategy</h1>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Insert</h2>
+<p><b>Description</b></p>
+<p>For insert node at <code>book(pos=18, prio=20)</code> </p><center> <img src="https://img-blog.csdn.net/20151103185313376?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="" height="250" class="inline"/> </center><p><b>Algorithm</b></p>
 <ol type="1">
-<li>Vscode</li>
-<li><code>build-essentials</code>. (Install <code>gdb</code> and xcode if you are using Mac)</li>
-<li>Linux</li>
-<li>python3.8</li>
-<li>pip</li>
-<li><code>pip intall quom</code> (for merging to single c file) [See <a href="https://github.com/Viatorus/quom">https://github.com/Viatorus/quom</a>]</li>
+<li>Search and Create <code>pos=18</code> (BST serach). [<code>n_new</code>]</li>
+<li>Correct Heap<ul>
+<li><b>Case 1</b>: <code>n_new.key</code> &lt; <code>n_new.parent.key</code><ul>
+<li>Do nothing</li>
+</ul>
+</li>
+<li><b>Case 2</b>: <code>n_new.key</code> &gt; <code>n_new.parent.key</code> and <code>n_new</code> is on the right<ul>
+<li><code>LeftRotate(n_new.parent)</code> to pick <code>n_new</code> up</li>
+<li>Repeat 2.</li>
+</ul>
+</li>
+<li><b>Case 3</b>: invert left right in <b>Case 3</b> <br  />
+</li>
+</ul>
+</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md4"></a>
-How to use this C template</h1>
+<p><b>Complexity</b></p>
 <h2><a class="anchor" id="autotoc_md5"></a>
-Build and Run with &lt;tt&gt;src/main.c&lt;/tt&gt;</h2>
-<div class="fragment"><div class="line">make BUILD_RUN</div>
-</div><!-- fragment --><p><img src="https://user-images.githubusercontent.com/29009898/109116029-db116d80-777a-11eb-883a-f10f599d5cc5.png" alt="Screen Shot 2021-02-25 at 3 04 42 PM" width="977" class="inline"/></p>
+Delete</h2>
+<p><b>Description</b> <b>Algorithm</b> <b>Complexity</b></p>
 <h2><a class="anchor" id="autotoc_md6"></a>
-Unit testing</h2>
-<div class="fragment"><div class="line">make TEST</div>
-</div><!-- fragment --><p><img src="https://user-images.githubusercontent.com/29009898/109116100-f7150f00-777a-11eb-9de0-88eaef70a222.png" alt="Screen Shot 2021-02-25 at 3 04 06 PM" width="924" class="inline"/></p>
+Increase Priority</h2>
+<p><b>Description</b></p>
+<p><b>Algorithm</b></p>
+<p><b>Complexity</b></p>
 <h2><a class="anchor" id="autotoc_md7"></a>
-Set workspace to this project</h2>
-<p><img src="https://user-images.githubusercontent.com/29009898/109115183-a5b85000-7779-11eb-97b2-1cde0b306cdb.png" alt="Workspace" width="400" class="inline"/></p>
+Query largest</h2>
+<p><b>Description</b></p><ul>
+<li>Query the largest priority between the positions <code>l</code> and <code>r</code>. ```c Query(l, r) ```</li>
+</ul>
+<p><b>Algorithm</b></p>
+<ol type="1">
+<li>Search first element in [l,r] <div class="fragment"><div class="line"><a class="code" href="structnode.html">node</a> search_node_in_region(root, l, r)</div>
+<div class="ttc" id="astructnode_html"><div class="ttname"><a href="structnode.html">node</a></div><div class="ttdef"><b>Definition:</b> treap.h:33</div></div>
+</div><!-- fragment --></li>
+</ol>
+<p><b>Complexity</b></p>
 <h2><a class="anchor" id="autotoc_md8"></a>
-Use the debugger icon on  VScode</h2>
-<p><img src="https://user-images.githubusercontent.com/29009898/109115199-abae3100-7779-11eb-8c21-bc4d98be52a7.png" alt="GDB usage" width="2560" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md9"></a>
-Gihub CD (Continuouse Documentation)</h2>
-<p>See <a href="https://github.com/stevengogogo/CProjectTemplate/issues/5">issue</a> for tutorial</p>
-<h2><a class="anchor" id="autotoc_md10"></a>
-Continuous Integration (CI)</h2>
+Reverse order</h2>
+<p><b>Description</b> <b>Algorithm</b> <b>Complexity</b></p>
+<h1><a class="anchor" id="autotoc_md9"></a>
+Helper functions</h1>
+<h3><a class="anchor" id="autotoc_md10"></a>
+Get first position</h3>
 <ul>
-<li>Run unit testing on every push and PR [Thank @sosiristseng]</li>
+<li>Leftist position under root <code>x</code> ```cpp node FirstPosition(x) while x.left != NULL x = x.left return x end ```</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
-Continusous Deployment (CD)</h2>
+<h3><a class="anchor" id="autotoc_md11"></a>
+Search Position</h3>
 <ul>
-<li>Merged to single <code>main.c</code> file when tagging or releasing. [Thank @sosiristseng]</li>
+<li>Record <b>Number of nodes under node x</b></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md12"></a>
-Memory Leak Detection with Valgrind</h2>
+<h3><a class="anchor" id="autotoc_md12"></a>
+Search Highest Priority</h3>
 <ul>
-<li>The test file is set as <code>test/buil/test.out</code></li>
-<li>If you want to test <code>main.c</code>, it can be set simply by modifying the <code>makefile</code></li>
-<li>Leakage during test <div class="fragment"><div class="line">LEAK: TEST</div>
-<div class="line">    valgrind --leak-check=full --show-leak-kinds=all --verbose ./test/build/test.out</div>
-</div><!-- fragment --></li>
-<li>Leakage in <code>main.c</code> <div class="fragment"><div class="line">LEAK: BUILD</div>
-<div class="line">    valgrind --leak-check=full --show-leak-kinds=all --verbose ./build/main.out</div>
-</div><!-- fragment --></li>
-<li>noted that if <code>main.out</code> needs input. Use following command <div class="fragment"><div class="line">LEAK: BUILD</div>
-<div class="line">    valgrind --leak-check=full --show-leak-kinds=all --verbose ./build/main.out &lt; path2data.in</div>
-</div><!-- fragment --> </li>
+<li>Search node with key=<code>x</code> within <code>[lp, hp]</code> with <b>highest level</b>. Return <code>NULL</code> if not item found. ```cpp node TreeSearchDomain(x, lp, hp) if x == NULL return x else if isBelong(x,lp,hp) return x else if x &gt; max(lp,hp) return TreeSearchDomain(x.right, lp,hp) else return TreeSearchDomain(x.left, lp,hp) end ```</li>
+<li>Usage<ul>
+<li>Query the largest books between position <code>l</code> and <code>r</code></li>
 </ul>
+</li>
+<li>Time<ul>
+<li><code>O(log n)</code></li>
+</ul>
+</li>
+<li>Ref: Binary search in BST</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md14"></a>
+Note</h1>
+<h2><a class="anchor" id="autotoc_md15"></a>
+Invet Binary Tree</h2>
+<div class="fragment"><div class="line">class Solution:</div>
+<div class="line">    def invertTree(self, root):</div>
+<div class="line">        if root is None:</div>
+<div class="line">            return None</div>
+<div class="line">        root.left, root.right = \</div>
+<div class="line">            self.invertTree(root.right), self.invertTree(root.left)</div>
+<div class="line">        return root</div>
+</div><!-- fragment --><ol type="1">
+<li><a href="https://leetcode.com/problems/invert-binary-tree/solution/">LeetCode</a></li>
+</ol>
+<h2><a class="anchor" id="autotoc_md16"></a>
+Treap Data Structure</h2>
+<blockquote class="doxtable">
+<p>A treap is a binary tree that maintains simultaneously the property of binary search tree (BST) and heap. </p>
+</blockquote>
+<h3><a class="anchor" id="autotoc_md17"></a>
+Split</h3>
+<p><img src="https://i.imgur.com/FH6UJw2.png" alt="Screen Shot 2021-05-30 at 2.56.52 PM" class="inline"/> <em>Source: <a href="https://youtu.be/svAHk-FAQgM?t=2068">A&amp;DS S02E06. Treaps, implicit keys</a></em></p>
+<div class="fragment"><div class="line">split(<a class="code" href="structnode.html">node</a>, x)</div>
+<div class="line">    <span class="keywordflow">if</span> <a class="code" href="structnode.html">node</a> == NULL</div>
+<div class="line">        <span class="keywordflow">return</span> {<span class="keyword">null</span>, <span class="keyword">null</span>}</div>
+<div class="line">    <span class="keywordflow">if</span> <a class="code" href="structnode.html">node</a>.x &lt; x</div>
+<div class="line">        p = split(<a class="code" href="structnode.html">node</a>.right, x)</div>
+<div class="line">        <a class="code" href="structnode.html">node</a>.right = p.left</div>
+<div class="line">        <span class="keywordflow">return</span> {<a class="code" href="structnode.html">node</a>, p.second}</div>
+<div class="line">    <span class="keywordflow">else</span></div>
+<div class="line">        p = split(<a class="code" href="structnode.html">node</a>.left, x)</div>
+<div class="line">        <a class="code" href="structnode.html">node</a>.left = p.second</div>
+<div class="line">        <span class="keywordflow">return</span> {p.left, <a class="code" href="structnode.html">node</a>}</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md18"></a>
+Merge</h3>
+<p><img src="https://i.imgur.com/JPYJraG.png" alt="Screen Shot 2021-05-30 at 2.57.09 PM" class="inline"/> <em>Source: <a href="https://youtu.be/svAHk-FAQgM?t=2068">A&amp;DS S02E06. Treaps, implicit keys</a></em></p>
+<p><b>Ref:</b></p><ol type="1">
+<li><a href="https://medium.com/carpanese/a-visual-introduction-to-treap-data-structure-part-1-6196d6cc12ee">medium</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Treap">Treap. Wiki</a></li>
+<li><a href="https://cp-algorithms.com/data_structures/treap.html">Treap. CP-Aglorithms</a></li>
+<li><a href="https://www.itread01.com/content/1545721233.html">Treap. ITREAD</a></li>
+</ol>
+<h1><a class="anchor" id="autotoc_md19"></a>
+Sample Code</h1>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;bits/stdc++.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#define endl &#39;\n&#39;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line">random_device random_seed;</div>
+<div class="line">mt19937 mt(random_seed());</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>implicit_treap</div>
+<div class="line">{   </div>
+<div class="line">    <span class="keyword">public</span>:</div>
+<div class="line">        <span class="keyword">struct </span><a class="code" href="structnode.html">node</a></div>
+<div class="line">        {</div>
+<div class="line">            <span class="keywordtype">int</span> sz, priority, lazy, rev, sum;</div>
+<div class="line">            <span class="keywordtype">int</span> val, key;</div>
+<div class="line">            <a class="code" href="structnode.html">node</a> *l, *r, *par;</div>
+<div class="line"> </div>
+<div class="line">            <a class="code" href="structnode.html">node</a>() { lazy = 0; rev = 0; val = 0; sz = 0; key = 0; priority = 0; l = NULL; r = NULL; par = NULL;}</div>
+<div class="line">            <a class="code" href="structnode.html">node</a>(<span class="keywordtype">int</span> _val)</div>
+<div class="line">            {</div>
+<div class="line">                val = _val;</div>
+<div class="line">                sum = _val;</div>
+<div class="line">                rev = 0;</div>
+<div class="line">                lazy = 0;</div>
+<div class="line">                key = 0;</div>
+<div class="line">                sz = 1;</div>
+<div class="line">                priority = mt();</div>
+<div class="line"> </div>
+<div class="line">                l = <span class="keyword">nullptr</span>;</div>
+<div class="line">                r = <span class="keyword">nullptr</span>;</div>
+<div class="line">                par = <span class="keyword">nullptr</span>;</div>
+<div class="line">            }</div>
+<div class="line">        };</div>
+<div class="line"> </div>
+<div class="line">        <span class="keyword">typedef</span> <a class="code" href="structnode.html">node</a>* pnode;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">private</span>:</div>
+<div class="line">        pnode root;</div>
+<div class="line">        map&lt;int, pnode&gt; position;</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">int</span> size(pnode p) { <span class="keywordflow">return</span> p ? p-&gt;sz : 0; }</div>
+<div class="line">        <span class="keywordtype">void</span> update_size(pnode &amp;p) { <span class="keywordflow">if</span>(p) p-&gt;sz = size(p-&gt;l) + size(p-&gt;r) + 1; }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">void</span> update_parent(pnode &amp;p)</div>
+<div class="line">        {</div>
+<div class="line">            <span class="keywordflow">if</span>(!p) <span class="keywordflow">return</span>;</div>
+<div class="line">            <span class="keywordflow">if</span>(p-&gt;l) p-&gt;l-&gt;par = p;</div>
+<div class="line">            <span class="keywordflow">if</span>(p-&gt;r) p-&gt;r-&gt;par = p;</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">void</span> <a class="code" href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a>(pnode &amp;p)</div>
+<div class="line">        {</div>
+<div class="line">            <span class="keywordflow">if</span>(!p) <span class="keywordflow">return</span>;      </div>
+<div class="line">            p-&gt;sum += size(p) * p-&gt;lazy;</div>
+<div class="line">            p-&gt;val += p-&gt;lazy;</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">if</span>(p-&gt;rev) swap(p-&gt;l, p-&gt;r);</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">if</span>(p-&gt;l) { p-&gt;l-&gt;lazy += p-&gt;lazy; p-&gt;l-&gt;rev ^= p-&gt;rev; }</div>
+<div class="line">            <span class="keywordflow">if</span>(p-&gt;r) { p-&gt;r-&gt;lazy += p-&gt;lazy; p-&gt;r-&gt;rev ^= p-&gt;rev; }</div>
+<div class="line"> </div>
+<div class="line">            p-&gt;lazy = 0;</div>
+<div class="line">            p-&gt;rev = 0;</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">void</span> reset(pnode &amp;t) { <span class="keywordflow">if</span>(t) t-&gt;sum = t-&gt;val; }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">void</span> combine(pnode &amp;t, pnode l, pnode r)</div>
+<div class="line">        {</div>
+<div class="line">            <span class="keywordflow">if</span>(!l) { t = r; <span class="keywordflow">return</span>; }</div>
+<div class="line">            <span class="keywordflow">if</span>(!r) { t = l; <span class="keywordflow">return</span>; }</div>
+<div class="line">            t-&gt;sum = l-&gt;sum + r-&gt;sum;</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">void</span> operation(pnode &amp;t)</div>
+<div class="line">        {</div>
+<div class="line">            <span class="keywordflow">if</span>(!t) <span class="keywordflow">return</span>;</div>
+<div class="line"> </div>
+<div class="line">            reset(t);</div>
+<div class="line">            <a class="code" href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a>(t-&gt;l);</div>
+<div class="line">            <a class="code" href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a>(t-&gt;r);</div>
+<div class="line"> </div>
+<div class="line">            combine(t, t-&gt;l, t);</div>
+<div class="line">            combine(t, t, t-&gt;r);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">void</span> split(pnode t, pnode &amp;l, pnode &amp;r, <span class="keywordtype">int</span> k, <span class="keywordtype">int</span> add = 0)</div>
+<div class="line">        {</div>
+<div class="line">            <span class="keywordflow">if</span>(t == NULL) { l = NULL; r = NULL; <span class="keywordflow">return</span>; }</div>
+<div class="line">            <a class="code" href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a>(t);</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordtype">int</span> idx = add + size(t-&gt;l);</div>
+<div class="line">            <span class="keywordflow">if</span>(idx &lt;= k) </div>
+<div class="line">                split(t-&gt;r, t-&gt;r, r, k, idx + 1), l = t;</div>
+<div class="line">            <span class="keywordflow">else</span></div>
+<div class="line">                split(t-&gt;l, l, t-&gt;l, k, add), r = t;</div>
+<div class="line"> </div>
+<div class="line">            update_parent(t);</div>
+<div class="line">            update_size(t);</div>
+<div class="line">            operation(t);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">void</span> merge(pnode &amp;t, pnode l, pnode r)</div>
+<div class="line">        {</div>
+<div class="line">            <a class="code" href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a>(l);</div>
+<div class="line">            <a class="code" href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a>(r);</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">if</span>(!l) { t = r; <span class="keywordflow">return</span>; }</div>
+<div class="line">            <span class="keywordflow">if</span>(!r) { t = l; <span class="keywordflow">return</span>; }</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">if</span>(l-&gt;priority &gt; r-&gt;priority)</div>
+<div class="line">                merge(l-&gt;r, l-&gt;r, r), t = l;</div>
+<div class="line">            <span class="keywordflow">else</span> </div>
+<div class="line">                merge(r-&gt;l, l, r-&gt;l), t = r;</div>
+<div class="line"> </div>
+<div class="line">            update_parent(t);</div>
+<div class="line">            update_size(t);</div>
+<div class="line">            operation(t);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">int</span> get_pos(pnode curr, pnode son = <span class="keyword">nullptr</span>)</div>
+<div class="line">        {</div>
+<div class="line">            <span class="keywordflow">if</span>(!son)</div>
+<div class="line">            {</div>
+<div class="line">                <span class="keywordflow">if</span>(!curr-&gt;par) <span class="keywordflow">return</span> size(curr-&gt;l);</div>
+<div class="line">                <span class="keywordflow">else</span> <span class="keywordflow">return</span> size(curr-&gt;l) + get_pos(curr-&gt;par, curr);</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">if</span>(!curr-&gt;par)</div>
+<div class="line">            {</div>
+<div class="line">                <span class="keywordflow">if</span>(son == curr-&gt;l) <span class="keywordflow">return</span> 0;</div>
+<div class="line">                <span class="keywordflow">else</span> <span class="keywordflow">return</span> size(curr-&gt;l) + 1;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">if</span>(curr-&gt;l == son) <span class="keywordflow">return</span> get_pos(curr-&gt;par, curr);</div>
+<div class="line">            <span class="keywordflow">else</span> <span class="keywordflow">return</span> get_pos(curr-&gt;par, curr) + size(curr-&gt;l) + 1;</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span>: </div>
+<div class="line">        <span class="keywordtype">void</span> clear()    </div>
+<div class="line">        {</div>
+<div class="line">            root = NULL;</div>
+<div class="line">            position.clear();</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keyword">inline</span> <span class="keywordtype">int</span> size() { <span class="keywordflow">return</span> size(root); }    </div>
+<div class="line"> </div>
+<div class="line">        implicit_treap() { clear(); }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">void</span> insert(<span class="keywordtype">int</span> pos, <span class="keywordtype">int</span> key, <span class="keywordtype">int</span> val)      </div>
+<div class="line">        {</div>
+<div class="line">            <span class="keywordflow">if</span>(!root)</div>
+<div class="line">            {</div>
+<div class="line">                pnode to_add = <span class="keyword">new</span> <a class="code" href="structnode.html">node</a>(val);</div>
+<div class="line">                to_add-&gt;key = key;</div>
+<div class="line">                root = to_add;</div>
+<div class="line">                position[key] = root;</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            pnode l, r, mid;</div>
+<div class="line">            mid = <span class="keyword">new</span> <a class="code" href="structnode.html">node</a>(val);</div>
+<div class="line">            position[key] = mid;</div>
+<div class="line">            mid-&gt;key = key;</div>
+<div class="line"> </div>
+<div class="line">            split(root, l, r, pos - 1);</div>
+<div class="line">            merge(l, l, mid);</div>
+<div class="line">            merge(root, l, r);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">void</span> erase(<span class="keywordtype">int</span> qL, <span class="keywordtype">int</span> qR)  </div>
+<div class="line">        {</div>
+<div class="line">            pnode l, r, mid;</div>
+<div class="line"> </div>
+<div class="line">            split(root, l, r, qL - 1);</div>
+<div class="line">            split(r, mid, r, qR - qL);</div>
+<div class="line">            merge(root, l, r);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">int</span> query_sum(<span class="keywordtype">int</span> qL, <span class="keywordtype">int</span> qR) </div>
+<div class="line">        {</div>
+<div class="line">            pnode l, r, mid;</div>
+<div class="line"> </div>
+<div class="line">            split(root, l, r, qL - 1);</div>
+<div class="line">            split(r, mid, r, qR - qL);</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordtype">int</span> answer = mid-&gt;sum;</div>
+<div class="line"> </div>
+<div class="line">            merge(r, mid, r);</div>
+<div class="line">            merge(root, l, r);</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">return</span> answer;</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">void</span> add_value(<span class="keywordtype">int</span> qL, <span class="keywordtype">int</span> qR, <span class="keywordtype">int</span> val)     </div>
+<div class="line">        {</div>
+<div class="line">            pnode l, r, mid;</div>
+<div class="line"> </div>
+<div class="line">            split(root, l, r, qL - 1);</div>
+<div class="line">            split(r, mid, r, qR - qL);</div>
+<div class="line"> </div>
+<div class="line">            mid-&gt;lazy += val;</div>
+<div class="line"> </div>
+<div class="line">            merge(r, mid, r);</div>
+<div class="line">            merge(root, l, r);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">void</span> reverse(<span class="keywordtype">int</span> qL, <span class="keywordtype">int</span> qR)                </div>
+<div class="line">        {</div>
+<div class="line">            pnode l, r, mid;</div>
+<div class="line"> </div>
+<div class="line">            split(root, l, r, qL - 1);</div>
+<div class="line">            split(r, mid, r, qR - qL);</div>
+<div class="line"> </div>
+<div class="line">            mid-&gt;rev ^= 1;</div>
+<div class="line">            merge(r, mid, r);</div>
+<div class="line">            merge(root, l, r);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">void</span> cyclic_shift(<span class="keywordtype">int</span> qL, <span class="keywordtype">int</span> qR, <span class="keywordtype">int</span> k)    </div>
+<div class="line">        {</div>
+<div class="line">            <span class="keywordflow">if</span>(qL == qR) <span class="keywordflow">return</span>;</div>
+<div class="line">            k %= (qR - qL + 1);</div>
+<div class="line"> </div>
+<div class="line">            pnode l, r, mid, fh, sh;</div>
+<div class="line">            split(root, l, r, qL - 1);</div>
+<div class="line">            split(r, mid, r, qR - qL);</div>
+<div class="line"> </div>
+<div class="line">            split(mid, fh, sh, (qR - qL + 1) - k - 1);</div>
+<div class="line">            merge(mid, sh, fh);</div>
+<div class="line"> </div>
+<div class="line">            merge(r, mid, r);</div>
+<div class="line">            merge(root, l, r);</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">int</span> get_position_of_key(<span class="keywordtype">int</span> key) { <span class="keywordflow">return</span> get_pos(position[key]); }     </div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">int</span> get_value_at_positon(<span class="keywordtype">int</span> pos)    </div>
+<div class="line">        {  </div>
+<div class="line">            pnode l, r, mid;</div>
+<div class="line">            split(root, l, r, pos - 1);</div>
+<div class="line">            split(r, mid, r, 0);</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordtype">int</span> ret = mid ? mid-&gt;val : -1; </div>
+<div class="line">            merge(r, mid, r);</div>
+<div class="line">            merge(root, l, r);</div>
+<div class="line">            <span class="keywordflow">return</span> ret;</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">int</span> get_key_at_positon(<span class="keywordtype">int</span> pos)      </div>
+<div class="line">        {  </div>
+<div class="line">            pnode l, r, mid;</div>
+<div class="line">            split(root, l, r, pos - 1);</div>
+<div class="line">            split(r, mid, r, 0);</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordtype">int</span> ret = mid ? mid-&gt;key : -1; </div>
+<div class="line">            merge(r, mid, r);</div>
+<div class="line">            merge(root, l, r);</div>
+<div class="line">            <span class="keywordflow">return</span> ret;</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordtype">void</span> erase_key(<span class="keywordtype">int</span> key)             </div>
+<div class="line">        {</div>
+<div class="line">            pnode l, r, mid;</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordtype">int</span> pos = get_position_of_key(key);</div>
+<div class="line">            </div>
+<div class="line">            split(root, l, r, pos - 1);</div>
+<div class="line">            split(r, mid, r, 0);</div>
+<div class="line">            merge(root, l, r);</div>
+<div class="line">        }</div>
+<div class="line">};</div>
+<div class="ttc" id="atreap_8h_html_af5ce0c13f2d5a3d7a7ff3dfc437c77de"><div class="ttname"><a href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a></div><div class="ttdeci">void push(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:14</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md20"></a>
+Reference</h1>
+<ul>
+<li>Invert BST: <a href="https://afteracademy.com/blog/invert-a-binary-tree">https://afteracademy.com/blog/invert-a-binary-tree</a></li>
+<li>Cartesian heaps:https://cp-algorithms.com/data_structures/treap.html</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md21"></a>
+Treap and Implicity Treap</h2>
+<ol type="1">
+<li><a href="https://cp-algorithms.com/data_structures/treap.html#toc-tgt-1">Treap (Cartesian tree). CP-Algorithm</a></li>
+<li><a href="https://tanujkhattar.wordpress.com/2016/01/10/treaps-one-tree-to-rule-em-all-part-1/">Treaps : One Tree to Rule ’em all ..!! Part-1</a></li>
+<li><a href="https://tanujkhattar.wordpress.com/2016/01/10/treaps-one-tree-to-rule-em-all-part-2/">Treaps : One Tree to Rule ’em all ..!! Part-2</a></li>
+<li><a href="https://youtu.be/erKlLEXLKyY?t=1785">Episode 30 - Treaps. YouTube</a></li>
+<li><a href="https://medium.com/carpanese/a-visual-introduction-to-treap-data-structure-part-1-6196d6cc12ee">A Visual Introduction to Treap Data Structure (Part I: The Basics). Medium</a></li>
+<li><a href="https://github.com/radoslav11/Implicit-treap/blob/master/implicit_treap.cpp">Implicity Heap. Java</a> </li>
+</ol>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
