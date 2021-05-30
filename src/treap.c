@@ -2,10 +2,12 @@
 
 // Memory Management
 tnode* init_nodes(){
+    Nnode = 0;
     return (tnode*)malloc(MAX_NODE * sizeof(tnode));
 }
 
 void clear_nodes(tnode* nArr){
+    Nnode = 0;
     free(nArr);
 }
 
@@ -22,7 +24,7 @@ void push(tnode*t){
         t->leaf[LEFT]->rev ^= t->rev;
     if(t->leaf[RIGHT])
         t->leaf[RIGHT]->rev ^= t->rev;
-        
+
     t->rev = 0;
 }
 
@@ -33,7 +35,7 @@ void split(tnode* t, tnode* lt, tnode* rt, int key, int add){
         return;
     }
 
-    int ik = add + size(&(t->leaf[LEFT])); //implicit key
+    int ik = add + size(t->leaf[LEFT]); //implicit key
 
     if(ik <= key){ //key is on the right
         split(t->leaf[RIGHT], t->leaf[RIGHT], rt, key, ik+1);
@@ -69,7 +71,7 @@ void UpdateLeafParent(tnode* t){
     }
 }
 
-void UnpdateSize(tnode* t){
+void UpdateSize(tnode* t){
     if (t!=NULL)
         t->size = size(t->leaf[LEFT]) + size(t->leaf[RIGHT]) + 1;
 }
@@ -81,3 +83,9 @@ void Operate(tnode* t){
     push(t->leaf[RIGHT]);
 }
 
+//utils
+void swapTnode(tnode* a, tnode* b){
+    tnode* temp = a;
+    a = b;
+    b = a;
+}

@@ -13,13 +13,14 @@
 #define TREAP_H
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "utils.h"
 
 #define MAX_NODE 1600000
 #define LEFT 0
 #define RIGHT 1
 
-extern int Nnode = 0;
+static int Nnode;
 
 /**
  * @brief 
@@ -28,15 +29,15 @@ extern int Nnode = 0;
  * @param rev revert flat
  * @param size nodes below and including it
  * @param parent 
- * @param leaf 0: left; 1: right 
+ * @param leaf 0: left; 1: right; 2 Parent
  */
 typedef struct node {
     int key; 
     int priority;
     int rev; 
     int size;
-    int parent;
-    node *leaf[2];
+    struct node *parent;
+    struct node *leaf[2];
 } tnode;
 
 // Memory Management
@@ -61,7 +62,10 @@ int size(tnode* t);
 /** Link parent of t's leaves to t.*/
 void UpdateLeafParent(tnode* t);
 /** Update number of nodes below t (including t)*/
-void UnpdateSize(tnode* t);
+void UpdateSize(tnode* t);
 void Operate(tnode* t);
+
+//utils
+void swapTnode(tnode* a, tnode* b);
 
 #endif
