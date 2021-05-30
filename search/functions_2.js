@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['updateleafparent_14',['UpdateLeafParent',['../treap_8h.html#a08073cd1252b96f74bb5714c4347276e',1,'treap.c']]],
-  ['updatesize_15',['UpdateSize',['../treap_8h.html#a57648cfd389c2bf31fea6cef3648be5c',1,'treap.c']]]
+  ['push_16',['push',['../treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de',1,'treap.c']]]
 ];

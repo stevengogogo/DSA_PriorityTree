@@ -1,9 +1,9 @@
 var indexSectionsWithContent =
 {
-  0: "anptu",
+  0: "amnpstu",
   1: "n",
   2: "tu",
-  3: "apu",
+  3: "ampsu",
   4: "t",
   5: "p"
 };

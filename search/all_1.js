@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['node_1',['node',['../structnode.html',1,'']]]
+  ['merge_1',['merge',['../treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6',1,'treap.c']]]
 ];

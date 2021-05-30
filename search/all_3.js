@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tnode_4',['tnode',['../treap_8h.html#ab7767888cfea8af07851e50456e4e0d8',1,'treap.h']]],
-  ['treap_2eh_5',['treap.h',['../treap_8h.html',1,'']]]
+  ['priority_20tree_3',['Priority Tree',['../index.html',1,'']]],
+  ['push_4',['push',['../treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de',1,'treap.c']]]
 ];

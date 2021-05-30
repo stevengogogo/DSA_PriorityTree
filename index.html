@@ -145,7 +145,7 @@ Query largest</h2>
 <p><b>Algorithm</b></p>
 <ol type="1">
 <li>Search first element in [l,r] <div class="fragment"><div class="line"><a class="code" href="structnode.html">node</a> search_node_in_region(root, l, r)</div>
-<div class="ttc" id="astructnode_html"><div class="ttname"><a href="structnode.html">node</a></div><div class="ttdef"><b>Definition:</b> treap.h:34</div></div>
+<div class="ttc" id="astructnode_html"><div class="ttname"><a href="structnode.html">node</a></div><div class="ttdef"><b>Definition:</b> treap.h:33</div></div>
 </div><!-- fragment --></li>
 </ol>
 <p><b>Complexity</b></p>
@@ -325,7 +325,7 @@ Sample Code</h1>
 <div class="line">            operation(t);</div>
 <div class="line">        }</div>
 <div class="line"> </div>
-<div class="line">        <span class="keywordtype">void</span> merge(pnode &amp;t, pnode l, pnode r)</div>
+<div class="line">        <span class="keywordtype">void</span> <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(pnode &amp;t, pnode l, pnode r)</div>
 <div class="line">        {</div>
 <div class="line">            <a class="code" href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a>(l);</div>
 <div class="line">            <a class="code" href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a>(r);</div>
@@ -334,9 +334,9 @@ Sample Code</h1>
 <div class="line">            <span class="keywordflow">if</span>(!r) { t = l; <span class="keywordflow">return</span>; }</div>
 <div class="line"> </div>
 <div class="line">            <span class="keywordflow">if</span>(l-&gt;priority &gt; r-&gt;priority)</div>
-<div class="line">                merge(l-&gt;r, l-&gt;r, r), t = l;</div>
+<div class="line">                <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(l-&gt;r, l-&gt;r, r), t = l;</div>
 <div class="line">            <span class="keywordflow">else</span> </div>
-<div class="line">                merge(r-&gt;l, l, r-&gt;l), t = r;</div>
+<div class="line">                <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(r-&gt;l, l, r-&gt;l), t = r;</div>
 <div class="line"> </div>
 <div class="line">            update_parent(t);</div>
 <div class="line">            update_size(t);</div>
@@ -389,8 +389,8 @@ Sample Code</h1>
 <div class="line">            mid-&gt;key = key;</div>
 <div class="line"> </div>
 <div class="line">            split(root, l, r, pos - 1);</div>
-<div class="line">            merge(l, l, mid);</div>
-<div class="line">            merge(root, l, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(l, l, mid);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(root, l, r);</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordtype">void</span> erase(<span class="keywordtype">int</span> qL, <span class="keywordtype">int</span> qR)  </div>
@@ -399,7 +399,7 @@ Sample Code</h1>
 <div class="line"> </div>
 <div class="line">            split(root, l, r, qL - 1);</div>
 <div class="line">            split(r, mid, r, qR - qL);</div>
-<div class="line">            merge(root, l, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(root, l, r);</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordtype">int</span> query_sum(<span class="keywordtype">int</span> qL, <span class="keywordtype">int</span> qR) </div>
@@ -411,8 +411,8 @@ Sample Code</h1>
 <div class="line"> </div>
 <div class="line">            <span class="keywordtype">int</span> answer = mid-&gt;sum;</div>
 <div class="line"> </div>
-<div class="line">            merge(r, mid, r);</div>
-<div class="line">            merge(root, l, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(r, mid, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(root, l, r);</div>
 <div class="line"> </div>
 <div class="line">            <span class="keywordflow">return</span> answer;</div>
 <div class="line">        }</div>
@@ -426,8 +426,8 @@ Sample Code</h1>
 <div class="line"> </div>
 <div class="line">            mid-&gt;lazy += val;</div>
 <div class="line"> </div>
-<div class="line">            merge(r, mid, r);</div>
-<div class="line">            merge(root, l, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(r, mid, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(root, l, r);</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line"> </div>
@@ -439,8 +439,8 @@ Sample Code</h1>
 <div class="line">            split(r, mid, r, qR - qL);</div>
 <div class="line"> </div>
 <div class="line">            mid-&gt;rev ^= 1;</div>
-<div class="line">            merge(r, mid, r);</div>
-<div class="line">            merge(root, l, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(r, mid, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(root, l, r);</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordtype">void</span> cyclic_shift(<span class="keywordtype">int</span> qL, <span class="keywordtype">int</span> qR, <span class="keywordtype">int</span> k)    </div>
@@ -453,10 +453,10 @@ Sample Code</h1>
 <div class="line">            split(r, mid, r, qR - qL);</div>
 <div class="line"> </div>
 <div class="line">            split(mid, fh, sh, (qR - qL + 1) - k - 1);</div>
-<div class="line">            merge(mid, sh, fh);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(mid, sh, fh);</div>
 <div class="line"> </div>
-<div class="line">            merge(r, mid, r);</div>
-<div class="line">            merge(root, l, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(r, mid, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(root, l, r);</div>
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordtype">int</span> get_position_of_key(<span class="keywordtype">int</span> key) { <span class="keywordflow">return</span> get_pos(position[key]); }     </div>
@@ -468,8 +468,8 @@ Sample Code</h1>
 <div class="line">            split(r, mid, r, 0);</div>
 <div class="line"> </div>
 <div class="line">            <span class="keywordtype">int</span> ret = mid ? mid-&gt;val : -1; </div>
-<div class="line">            merge(r, mid, r);</div>
-<div class="line">            merge(root, l, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(r, mid, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(root, l, r);</div>
 <div class="line">            <span class="keywordflow">return</span> ret;</div>
 <div class="line">        }</div>
 <div class="line"> </div>
@@ -480,8 +480,8 @@ Sample Code</h1>
 <div class="line">            split(r, mid, r, 0);</div>
 <div class="line"> </div>
 <div class="line">            <span class="keywordtype">int</span> ret = mid ? mid-&gt;key : -1; </div>
-<div class="line">            merge(r, mid, r);</div>
-<div class="line">            merge(root, l, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(r, mid, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(root, l, r);</div>
 <div class="line">            <span class="keywordflow">return</span> ret;</div>
 <div class="line">        }</div>
 <div class="line"> </div>
@@ -493,10 +493,11 @@ Sample Code</h1>
 <div class="line">            </div>
 <div class="line">            split(root, l, r, pos - 1);</div>
 <div class="line">            split(r, mid, r, 0);</div>
-<div class="line">            merge(root, l, r);</div>
+<div class="line">            <a class="code" href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a>(root, l, r);</div>
 <div class="line">        }</div>
 <div class="line">};</div>
-<div class="ttc" id="atreap_8h_html_af5ce0c13f2d5a3d7a7ff3dfc437c77de"><div class="ttname"><a href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a></div><div class="ttdeci">void push(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:16</div></div>
+<div class="ttc" id="atreap_8h_html_a9e178cdb89ff0ee09902611dddb5f8f6"><div class="ttname"><a href="treap_8h.html#a9e178cdb89ff0ee09902611dddb5f8f6">merge</a></div><div class="ttdeci">void merge(tnode *t, tnode *lt, tnode *rt)</div><div class="ttdoc">Merge two treaps. Assume all kets in rt &gt; lt.</div><div class="ttdef"><b>Definition:</b> treap.c:123</div></div>
+<div class="ttc" id="atreap_8h_html_af5ce0c13f2d5a3d7a7ff3dfc437c77de"><div class="ttname"><a href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a></div><div class="ttdeci">void push(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:87</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md20"></a>
 Reference</h1>
 <ul>
