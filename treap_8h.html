@@ -69,8 +69,7 @@ $(function() {
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">treap.h File Reference</div>  </div>
 </div><!--header-->
@@ -79,15 +78,17 @@ $(function() {
 <p>Implicit Treap Implementation.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="utils_8h_source.html">utils.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for treap.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="treap_8h__incl.png" border="0" usemap="#asrc_2treap_8h" alt=""/></div>
 <map name="asrc_2treap_8h" id="asrc_2treap_8h">
-<area shape="rect" title="Implicit Treap Implementation." alt="" coords="35,5,118,32"/>
+<area shape="rect" title="Implicit Treap Implementation." alt="" coords="79,5,162,32"/>
 <area shape="rect" title=" " alt="" coords="5,80,65,107"/>
-<area shape="rect" href="utils_8h.html" title="General Utilities for C language." alt="" coords="90,80,146,107"/>
+<area shape="rect" title=" " alt="" coords="89,80,152,107"/>
+<area shape="rect" href="utils_8h.html" title="General Utilities for C language." alt="" coords="177,80,233,107"/>
 </map>
 </div>
 </div>
@@ -133,17 +134,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> (<a class="el
 <tr class="separator:af12d41e5a1708f5d06b334c7f80d1f4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08073cd1252b96f74bb5714c4347276e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="treap_8h.html#a08073cd1252b96f74bb5714c4347276e">UpdateLeafParent</a> (<a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> *t)</td></tr>
 <tr class="separator:a08073cd1252b96f74bb5714c4347276e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06a966a483f4e59bd1c4b64898ca862b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="treap_8h.html#a06a966a483f4e59bd1c4b64898ca862b">UnpdateSize</a> (<a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> *t)</td></tr>
-<tr class="separator:a06a966a483f4e59bd1c4b64898ca862b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57648cfd389c2bf31fea6cef3648be5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="treap_8h.html#a57648cfd389c2bf31fea6cef3648be5c">UpdateSize</a> (<a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> *t)</td></tr>
+<tr class="separator:a57648cfd389c2bf31fea6cef3648be5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdaac7df7ea52530c1cad7153149dbc2"><td class="memItemLeft" align="right" valign="top"><a id="abdaac7df7ea52530c1cad7153149dbc2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Operate</b> (<a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> *t)</td></tr>
 <tr class="separator:abdaac7df7ea52530c1cad7153149dbc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ab4048232e662be7a5efd3754138aa2ea"><td class="memItemLeft" align="right" valign="top"><a id="ab4048232e662be7a5efd3754138aa2ea"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>Nnode</b> = 0</td></tr>
-<tr class="separator:ab4048232e662be7a5efd3754138aa2ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ebb4376d22e27c096236e3fa5db0128"><td class="memItemLeft" align="right" valign="top"><a id="a5ebb4376d22e27c096236e3fa5db0128"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>swapTnode</b> (<a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> *a, <a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> *b)</td></tr>
+<tr class="separator:a5ebb4376d22e27c096236e3fa5db0128"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implicit Treap Implementation. </p>
@@ -171,7 +169,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>Nnode</b> = 0</td></tr
     <tr><td class="paramname">rev</td><td>revert flat </td></tr>
     <tr><td class="paramname">size</td><td>nodes below and including it </td></tr>
     <tr><td class="paramname">parent</td><td></td></tr>
-    <tr><td class="paramname">leaf</td><td>0: left; 1: right </td></tr>
+    <tr><td class="paramname">leaf</td><td>0: left; 1: right; 2 Parent </td></tr>
   </table>
   </dd>
 </dl>
@@ -198,25 +196,6 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>Nnode</b> = 0</td></tr
 
 </div>
 </div>
-<a id="a06a966a483f4e59bd1c4b64898ca862b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06a966a483f4e59bd1c4b64898ca862b">&#9670;&nbsp;</a></span>UnpdateSize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UnpdateSize </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> *&#160;</td>
-          <td class="paramname"><em>t</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Update number of nodes below t (including t) </p>
-
-</div>
-</div>
 <a id="a08073cd1252b96f74bb5714c4347276e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a08073cd1252b96f74bb5714c4347276e">&#9670;&nbsp;</a></span>UpdateLeafParent()</h2>
 
@@ -233,6 +212,25 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>Nnode</b> = 0</td></tr
       </table>
 </div><div class="memdoc">
 <p>Link parent of t's leaves to t. </p>
+
+</div>
+</div>
+<a id="a57648cfd389c2bf31fea6cef3648be5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57648cfd389c2bf31fea6cef3648be5c">&#9670;&nbsp;</a></span>UpdateSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UpdateSize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> *&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Update number of nodes below t (including t) </p>
 
 </div>
 </div>
