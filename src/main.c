@@ -8,12 +8,19 @@ void tree_validate(tnode* t){
     if (t==NULL)
         return;
 
-    //Priority
-    for(int i=0;i<2;i++)
-        assert(t->priority >= t->leaf[i]->priority);
-    
-    //Key
+    for(int i=0;i<2;i++){
+        if(t->leaf[i] != NULL){
+            //Priority
+            assert(t->priority >= t->leaf[i]->priority);
+
+        }
+    }
+
+     //Key
+    if (t->leaf[LEFT] != NULL)
     assert(t->size > t->leaf[LEFT]->size);
+
+    if(t->leaf[RIGHT] != NULL)
     assert(t->size < t->leaf[RIGHT]->size);
 
     tree_validate(t->leaf[LEFT]);
