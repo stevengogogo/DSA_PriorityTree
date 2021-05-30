@@ -66,6 +66,7 @@ void merge(tnode* t, tnode* lt, tnode* rt);
 int size(tnode* t);
 
 //update
+void updateRoot(tnode* t);
 /** Link parent of t's leaves to t.*/
 void UpdateLeafParent(tnode* t);
 /** Update number of nodes below t (including t)*/

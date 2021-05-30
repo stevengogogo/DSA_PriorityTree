@@ -46,10 +46,7 @@ void split(tnode* t, tnode* lt, tnode* rt, int key, int add){
         rt = t;
     }
 
-    //Update
-    UpdateLeafParent(t); 
-    UpdateSize(t);
-    Operate(t);
+    updateRoot(t);
 }
 
 void merge(tnode* t, tnode* lt, tnode* rt){
@@ -70,6 +67,7 @@ void merge(tnode* t, tnode* lt, tnode* rt){
         t = rt;
     }
 
+    updateRoot(t);
 }
 
 //node info
@@ -81,6 +79,12 @@ int size(tnode* t){
 }
 
 //update
+void updateRoot(tnode* t){
+    UpdateLeafParent(t);
+    UpdateSize(t);
+    Operate(t);
+}
+
 void UpdateLeafParent(tnode* t){
     if (t==NULL)
         return ;
