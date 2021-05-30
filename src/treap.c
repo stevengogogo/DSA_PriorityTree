@@ -1,8 +1,11 @@
 #include "treap.h"
 
+static int Nnode;
+static tnode* tnodeArr;
+
 // Problem Setup
 void interface(void){
-    tnodeArr = init_nodes();
+    init_nodes();
     int N=0;
     int Q=0;
 
@@ -22,7 +25,7 @@ void interface(void){
         //TODO
     }
 
-    clear_nodes(tnodeArr);
+    clear_nodes();
 }
 
 tnode* build_treap(int* p, int len){
@@ -72,9 +75,10 @@ void _Insert(tnode*t, tnode* newt){
 }
 
 // Memory Management
-tnode* init_nodes(){
+void init_nodes(){
+
     Nnode = 0;
-    return (tnode*)malloc(MAX_NODE * sizeof(tnode));
+    tnodeArr = (tnode*)malloc(MAX_NODE * sizeof(tnode));
 }
 
 void clear_nodes(tnode* nArr){
