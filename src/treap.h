@@ -46,7 +46,7 @@ void interface(void);
 tnode* build_treap(int* p, int len);
 
 /****Main Operation****/
-void Insert(tnode* t, int p, int k);
+void Insert(tnode** t, int p, int k);
 void Delete(tnode*t, int k);
 void Increase(tnode*t, int l, int r, int p);
 void QueryLargest(tnode*t, int l , int r);
