@@ -31,14 +31,15 @@
  * @param leaf 0: left; 1: right; 2 Parent
  */
 typedef struct node {
-    int key; 
     int priority;
+    int key; 
     int rev; 
     int size;
     struct node *parent;
     struct node *leaf[2];
 } tnode;
 
+/** available index*/
 static int Nnode;
 static tnode* tnodeArr;
 
@@ -54,7 +55,9 @@ void QueryLargest(tnode*t, int l , int r);
 void Reverse(tnode*t, int l, int r);
 void Remove(tnode*t);
 
-
+/**Helper function**/
+tnode* setNewNode(int p, int k);
+void _Insert(tnode*t, tnode* newt);
 
 
 // Memory Management

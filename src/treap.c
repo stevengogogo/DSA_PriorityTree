@@ -28,13 +28,48 @@ void interface(void){
 tnode* build_treap(int* p, int len){
     tnode* t = NULL;
 
-    Insert(t, p, 1);
+    Insert(t, p[1], 1);
     for(int k=2;k<=len;k++){
-        Insert(t, p, k);
+        Insert(t, p[k], k);
     }
     return t;
 }
 
+
+/****Main Operation****/
+void Insert(tnode*t, int p, int k){
+    //set new node
+    tnode* newt = setNewNode(p,k);
+    _Insert(t, newt);
+}
+
+
+/**Helper function**/
+tnode* setNewNode(int p, int k){
+    tnode* newt = &tnodeArr[Nnode++];
+    //Assigned value
+    newt->priority = p;
+    newt->key = k;
+    //Default
+    newt->parent = NULL;
+    newt->leaf[LEFT] = NULL;
+    newt->leaf[RIGHT] = NULL;
+    newt->rev = 0;
+    newt->size = 1;
+    return newt;
+}
+
+void _Insert(tnode*t, tnode* newt){
+    if(t==NULL)
+        t = newt;
+    
+    tnode* l = NULL;
+    tnode* r = NULL;
+
+    split(t, l, r, newt->key-1, 0);
+    merge(l, l, newt);
+    merge(t, l, r);
+}
 
 // Memory Management
 tnode* init_nodes(){
