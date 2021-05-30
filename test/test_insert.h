@@ -5,14 +5,14 @@
 #include "acutest.h"
 
 void test_build(void){
-    tnodeArr = init_nodes();
+    init_nodes();
 
     int len = 4;
     int p[] = {1,2,4,-1};
 
     tnode* t = build_treap(p, len);
 
-    clear_nodes(tnodeArr);
+    clear_nodes();
 }
 
 

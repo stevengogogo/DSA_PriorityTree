@@ -39,9 +39,7 @@ typedef struct node {
     struct node *leaf[2];
 } tnode;
 
-/** available index*/
-static int Nnode;
-static tnode* tnodeArr;
+
 
 /***Problem Setup***/
 void interface(void);
@@ -61,8 +59,8 @@ void _Insert(tnode*t, tnode* newt);
 
 
 // Memory Management
-tnode* init_nodes();
-void clear_nodes(tnode*);
+void init_nodes();
+void clear_nodes();
 
 
 /****Treap Operation****/

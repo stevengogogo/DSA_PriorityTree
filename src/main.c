@@ -1,15 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "utils.h"
+#include "treap.h"
 
 int main()
 {
     
-    // newnumc("3434");
-    int a = 1;
-    int b = 3;
-    int ans = argmax(a,b);
+    init_nodes();
+
+    int len = 4;
+    int p[] = {1,2,4,-1};
+
+    tnode* t = build_treap(p, len);
+
+    clear_nodes();
 
     return 0;
 }
