@@ -20,7 +20,6 @@
 #define LEFT 0
 #define RIGHT 1
 
-static int Nnode;
 
 /**
  * @brief 
@@ -39,6 +38,24 @@ typedef struct node {
     struct node *parent;
     struct node *leaf[2];
 } tnode;
+
+static int Nnode;
+static tnode* tnodeArr;
+
+/***Problem Setup***/
+void interface(void);
+tnode* build_treap(int* p, int len);
+
+/****Main Operation****/
+void Insert(tnode* t, int p, int k);
+void Delete(tnode*t, int k);
+void Increase(tnode*t, int l, int r, int p);
+void QueryLargest(tnode*t, int l , int r);
+void Reverse(tnode*t, int l, int r);
+void Remove(tnode*t);
+
+
+
 
 // Memory Management
 tnode* init_nodes();

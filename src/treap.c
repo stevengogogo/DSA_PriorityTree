@@ -1,5 +1,41 @@
 #include "treap.h"
 
+// Problem Setup
+void interface(void){
+    tnodeArr = init_nodes();
+    int N=0;
+    int Q=0;
+
+    //Setup N/Q
+    scanf("%d%d",&N, &Q);
+    
+    //Set initial priorities
+    int* p = (int*)malloc(N*sizeof(int)+1);
+    for(int i=1;i<=N;i++)
+        scanf("%d", &p[i]);
+
+    //Inital Treap
+    build_treap(p, N);
+
+    //Operation
+    for(int i=0;i<Q;i++){
+        //TODO
+    }
+
+    clear_nodes(tnodeArr);
+}
+
+tnode* build_treap(int* p, int len){
+    tnode* t = NULL;
+
+    Insert(t, p, 1);
+    for(int k=2;k<=len;k++){
+        Insert(t, p, k);
+    }
+    return t;
+}
+
+
 // Memory Management
 tnode* init_nodes(){
     Nnode = 0;
