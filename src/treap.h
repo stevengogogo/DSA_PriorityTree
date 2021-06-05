@@ -31,10 +31,11 @@
  * @param leaf 0: left; 1: right; 2 Parent
  */
 typedef struct node {
-    int priority;
-    int key; 
-    int rev; 
-    int size;
+    int pt;//for heap arrangement
+    int key;//book priority
+    int rev; //reverse
+    int lazy;//waiting operation
+    int size;//number of nodes under it
     struct node *parent;
     struct node *leaf[2];
 } tnode;
@@ -54,8 +55,8 @@ void Reverse(tnode*t, int l, int r);
 void Remove(tnode*t);
 
 /**Helper function**/
-tnode* setNewNode(int p, int k);
-void _Insert(tnode**t, tnode* newt);
+tnode* setNewNode(int p);
+
 
 
 // Memory Management

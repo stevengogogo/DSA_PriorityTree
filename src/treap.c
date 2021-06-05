@@ -40,19 +40,31 @@ tnode* build_treap(int* p, int len){
 
 
 /****Main Operation****/
-void Insert(tnode**t, int p, int k){
+void Insert(tnode**t, int prior, int pos){
     //set new node
-    tnode* newt = setNewNode(p,k);
-    _Insert(t, newt);
+    tnode* newt = setNewNode(prior);
+
+    if(*t==NULL){
+        newt->key = prior;
+        *t = newt;
+        return;
+    }
+    
+    tnode* l = NULL;
+    tnode* r = NULL;
+
+    split(*t, &l, &r, newt->key-1, pos-1);
+    merge(&l, l, newt);
+    merge(t, l, r);
 }
 
 
 /**Helper function**/
-tnode* setNewNode(int p, int k){
+tnode* setNewNode(int p){
     tnode* newt = &tnodeArr[Nnode++];
     //Assigned value
-    newt->priority = p;
-    newt->key = k;
+    newt->pt = rand();
+    newt->key = p;
     //Default
     newt->parent = NULL;
     newt->leaf[LEFT] = NULL;
@@ -62,19 +74,7 @@ tnode* setNewNode(int p, int k){
     return newt;
 }
 
-void _Insert(tnode**t, tnode* newt){
-    if(*t==NULL){
-        *t = newt;
-        return;
-    }
-    
-    tnode* l = NULL;
-    tnode* r = NULL;
 
-    split(*t, &l, &r, newt->key-1, 0);
-    merge(&l, l, newt);
-    merge(t, l, r);
-}
 
 // Memory Management
 void init_nodes(){
@@ -135,7 +135,7 @@ void merge(tnode** t, tnode* lt, tnode* rt){
     if(rt == NULL)
         *t = lt; return;
     
-    if(lt->priority > rt->priority){
+    if(lt->pt > rt->pt){
         merge(&lt->leaf[RIGHT], lt->leaf[RIGHT], rt);
         *t = lt;
     }

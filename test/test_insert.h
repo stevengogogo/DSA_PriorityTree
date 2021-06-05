@@ -11,7 +11,7 @@ void tree_validate(tnode* t){
     for(int i=0;i<2;i++){
         if(t->leaf[i] != NULL){
             //Priority
-            TEST_CHECK(t->priority >= t->leaf[i]->priority);
+            TEST_CHECK(t->pt >= t->leaf[i]->pt);
 
         }
     }
