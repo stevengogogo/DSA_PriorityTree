@@ -46,7 +46,7 @@ void interface(void);
 tnode* build_treap(int* p, int len);
 
 /****Main Operation****/
-void Insert(tnode* t, int p, int k);
+void Insert(tnode** t, int p, int k);
 void Delete(tnode*t, int k);
 void Increase(tnode*t, int l, int r, int p);
 void QueryLargest(tnode*t, int l , int r);
@@ -55,7 +55,7 @@ void Remove(tnode*t);
 
 /**Helper function**/
 tnode* setNewNode(int p, int k);
-void _Insert(tnode*t, tnode* newt);
+void _Insert(tnode**t, tnode* newt);
 
 
 // Memory Management
@@ -69,7 +69,7 @@ void clear_nodes();
 void push(tnode* t);
 
 // Split and Merge
-void split(tnode* t, tnode* lt, tnode* rt, int key, int add);
+void split(tnode* t, tnode** lt, tnode** rt, int key, int add);
 
 /**
  * @brief Merge two treaps. Assume all kets in rt > lt
@@ -77,7 +77,7 @@ void split(tnode* t, tnode* lt, tnode* rt, int key, int add);
  * @param lt treap with smaller keys
  * @param rt treap with larger keys
  */
-void merge(tnode* t, tnode* lt, tnode* rt);
+void merge(tnode** t, tnode* lt, tnode* rt);
 
 
 //node info
