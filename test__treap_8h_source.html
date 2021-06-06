@@ -249,12 +249,18 @@ $(function() {
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    TEST_CHECK(<a class="code" href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a>(t,0,len-1) == 7);</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    TEST_CHECK(get_val_at_pos(t, 4) == -12);</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    clear_nodes();</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;}</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    Remove(&amp;t);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    Remove(&amp;t);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    TEST_CHECK(get_val_at_pos(t, 0) == 2);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    TEST_MSG(<span class="stringliteral">&quot;Got: %d&quot;</span>, get_val_at_pos(t, 0));</div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    clear_nodes();</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;}</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="astructnode_html"><div class="ttname"><a href="structnode.html">node</a></div><div class="ttdef"><b>Definition:</b> treap.h:33</div></div>
 <div class="ttc" id="atreap_8h_html"><div class="ttname"><a href="treap_8h.html">treap.h</a></div><div class="ttdoc">Implicit Treap Implementation.</div></div>
 <div class="ttc" id="atreap_8h_html_a6636acf7ab562ea031f376a99a055654"><div class="ttname"><a href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a></div><div class="ttdeci">int QueryLargest(tnode *t, int l, int r)</div><div class="ttdef"><b>Definition:</b> treap.c:78</div></div>
