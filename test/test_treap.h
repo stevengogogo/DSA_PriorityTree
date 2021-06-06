@@ -190,7 +190,7 @@ void test_remove_largest(void){
     Remove(&t);
     Remove(&t);
     print_tree_by_query(t, len-3);
-    TEST_CHECK(get_val_at_pos(t, 0) == 2);
+    TEST_CHECK(get_val_at_pos(t, 0) == 1);
     TEST_MSG("Got: %d", get_val_at_pos(t, 0));
 
 
