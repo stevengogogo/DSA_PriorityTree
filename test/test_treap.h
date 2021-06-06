@@ -136,4 +136,19 @@ void test_increase(void){
 
 }
 
+void test_reverse(void){
+    init_nodes();
+
+    //Build tree
+    int len = 10;
+    int p[] = {7,2,1,2,4,-12,2,2,2,2};
+    tnode* t = build_treap(p, len);
+
+    Reverse(&t, 1, 9);
+    print_tree_by_query(t, len);
+
+    clear_nodes();
+
+}
+
 #endif
