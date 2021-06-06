@@ -151,4 +151,52 @@ void test_reverse(void){
 
 }
 
+void test_find_largest(void){
+    init_nodes();
+
+    //Build tree
+    int len = 10;
+    int p[] = {7,2,1,2,14,-12,2,2,2,2};
+    tnode* t = build_treap(p, len);
+
+    int pos = get_node_pos(t->leaf[1], NULL);
+    printf("Pos: %d", pos);
+
+
+
+    tnode* largest = find_largest_minpos(t);
+    pos = get_node_pos(largest, NULL);
+    TEST_CHECK(largest->val == 14);
+    TEST_MSG("Got: %d", largest->val); 
+    TEST_CHECK(pos == 4);
+    TEST_MSG("Got: %d", pos); 
+
+    clear_nodes();
+
+}
+
+void test_remove_largest(void){
+    init_nodes();
+    //Build tree
+    int len = 10;
+    int p[] = {7,2,1,2,14,-12,2,2,2,2};
+    tnode* t = build_treap(p, len);
+
+    Remove(&t);
+
+    TEST_CHECK(QueryLargest(t,0,len-1) == 7);
+    TEST_CHECK(get_val_at_pos(t, 4) == -12);
+
+    Remove(&t);
+    Remove(&t);
+    print_tree_by_query(t, len-3);
+    TEST_CHECK(get_val_at_pos(t, 0) == 1);
+    TEST_MSG("Got: %d", get_val_at_pos(t, 0));
+
+
+
+    clear_nodes();
+
+}
+
 #endif

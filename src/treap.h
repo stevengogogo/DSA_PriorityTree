@@ -56,14 +56,15 @@ void Increase(tnode*t, int pL, int pR, int priorD);
 /** Return largest element in interval [l,r]*/
 int QueryLargest(tnode*t, int l , int r);
 void Reverse(tnode**t, int l, int r);
-void Remove(tnode*t);
+void Remove(tnode**t);
 
 /**Helper function**/
 void _Insert(tnode**t, int prior, int pos);
 void _Insert_at_start(tnode**t, int prior);
 tnode* setNewNode(int p);
 int get_val_at_pos(tnode* t, int pos);
-int find_largest_pos(tnode* t, int l, int r);
+int get_node_pos(tnode* ncur, tnode* leaf);
+tnode* find_largest_minpos(tnode* t);
 // Memory Management
 void init_nodes();
 void clear_nodes();

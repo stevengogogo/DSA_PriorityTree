@@ -4,28 +4,6 @@
 #include "treap.h"
 #include <assert.h>
 
-void tree_validate(tnode* t, int* c){
-    if (t==NULL)
-        return;
-    *c = *c + 1;
-    for(int i=0;i<2;i++){
-        if(t->leaf[i] != NULL){
-            //Priority
-            assert(t->pt >= t->leaf[i]->pt);
-
-        }
-    }
-
-     //Key
-    if (t->leaf[LEFT] != NULL)
-    assert(t->key > t->leaf[0]->key);
-
-    if(t->leaf[RIGHT] != NULL)
-    assert(t->key < t->leaf[1]->key);
-
-    tree_validate(t->leaf[0], c);
-    tree_validate(t->leaf[1], c);
-}
 
 int main()
 {
@@ -36,11 +14,27 @@ int main()
     int p[] = {7,2,1,2,4,-12,2,2,2,2};
     tnode* t = build_treap(p, len);
 
-    Increase(t, 1, 5, 10);
+    /*DELETION*/
+
+    //Original
     int MAX = QueryLargest(t, 0, len-1);
-   
-    //print_tree(t);
+
+    //Delete first item
+    Delete(&t, 1-1);
+    MAX = QueryLargest(t, 0, len-2);
+
+
+    //Delete fourth item
+    Delete(&t, 4-1); 
+    MAX = QueryLargest(t, 0, len-3);
+
+
+    //Delete All
+    for(int i=2;i<len;i++){
+        Delete(&t, 0);
+    }
 
     clear_nodes();
+
     return 0;
 }
