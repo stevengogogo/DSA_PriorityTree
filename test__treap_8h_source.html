@@ -213,7 +213,48 @@ $(function() {
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;}</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keywordtype">void</span> test_find_largest(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    init_nodes();</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="comment">//Build tree</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordtype">int</span> len = 10;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordtype">int</span> p[] = {7,2,1,2,14,-12,2,2,2,2};</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <a class="code" href="structnode.html">tnode</a>* t = build_treap(p, len);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordtype">int</span> pos = get_node_pos(t-&gt;leaf[1], NULL);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    printf(<span class="stringliteral">&quot;Pos: %d&quot;</span>, pos);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <a class="code" href="structnode.html">tnode</a>* largest = find_largest_pos(t);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    pos = get_node_pos(largest, NULL);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    TEST_CHECK(largest-&gt;val == 14);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    TEST_MSG(<span class="stringliteral">&quot;Got: %d&quot;</span>, largest-&gt;val); </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    TEST_CHECK(pos == 4);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    TEST_MSG(<span class="stringliteral">&quot;Got: %d&quot;</span>, pos); </div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    clear_nodes();</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;}</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="keywordtype">void</span> test_remove_largest(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    init_nodes();</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="comment">//Build tree</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordtype">int</span> len = 10;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="keywordtype">int</span> p[] = {7,2,1,2,14,-12,2,2,2,2};</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <a class="code" href="structnode.html">tnode</a>* t = build_treap(p, len);</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    Remove(&amp;t);</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    TEST_CHECK(<a class="code" href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a>(t,0,len-1) == 7);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    TEST_CHECK(get_val_at_pos(t, 4) == -12);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    clear_nodes();</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;}</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="astructnode_html"><div class="ttname"><a href="structnode.html">node</a></div><div class="ttdef"><b>Definition:</b> treap.h:33</div></div>
 <div class="ttc" id="atreap_8h_html"><div class="ttname"><a href="treap_8h.html">treap.h</a></div><div class="ttdoc">Implicit Treap Implementation.</div></div>
 <div class="ttc" id="atreap_8h_html_a6636acf7ab562ea031f376a99a055654"><div class="ttname"><a href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a></div><div class="ttdeci">int QueryLargest(tnode *t, int l, int r)</div><div class="ttdef"><b>Definition:</b> treap.c:78</div></div>
