@@ -31,28 +31,63 @@ void interface(void){
 tnode* build_treap(int* p, int len){
     tnode* t = NULL;
 
-    Insert(&t, p[1], 1);
-    for(int k=2;k<=len;k++){
-        Insert(&t, p[k], k);
+    for(int k=0;k<len;k++){
+        Insert(&t, p[k], k+1);
     }
     return t;
 }
 
 
 /****Main Operation****/
-void Insert(tnode**t, int p, int k){
+void Insert(tnode**t, int prior, int pos){
     //set new node
-    tnode* newt = setNewNode(p,k);
-    _Insert(t, newt);
+    tnode* newt = setNewNode(prior);
+    newt->key = pos;
+    newt->val = prior;
+    newt->max = prior;
+
+    if(*t==NULL){
+        *t = newt;
+        return;
+    }
+    
+    tnode* l = NULL;
+    tnode* r = NULL;
+
+    split(*t, &l, &r, pos-1, 0);
+    merge(&l, l, newt);
+    merge(t, l, r);
+    //Operate(t);
+}
+
+
+int QueryLargest(tnode*t, int kL , int kR){
+    tnode* l;
+    tnode* r;
+    tnode* m;
+
+	split(t, &l, &r, kL - 1,0);
+	split(r, &m, &r, kR - kL,0);
+
+	int answer = m->max;
+
+    merge(&r, m, r);
+    merge(&t, l, r);
+
+    return answer;
 }
 
 
 /**Helper function**/
-tnode* setNewNode(int p, int k){
-    tnode* newt = &tnodeArr[Nnode++];
+tnode* setNewNode(int val){
+    tnode* newt = &tnodeArr[Nnode];
+    ++Nnode;
     //Assigned value
-    newt->priority = p;
-    newt->key = k;
+    newt->pt = rand();
+    newt->key = 0;
+    newt->val = val;
+    newt->sum = val;
+    newt->max = val;
     //Default
     newt->parent = NULL;
     newt->leaf[LEFT] = NULL;
@@ -62,18 +97,35 @@ tnode* setNewNode(int p, int k){
     return newt;
 }
 
-void _Insert(tnode**t, tnode* newt){
-    if(*t==NULL){
-        *t = newt;
-        return;
-    }
-    
-    tnode* l = NULL;
-    tnode* r = NULL;
+int get_val_at_pos(tnode* t, int pos){
+    tnode* l;
+    tnode* r;
+    tnode* m;
 
-    split(*t, &l, &r, newt->key-1, 0);
-    merge(&l, l, newt);
-    merge(t, l, r);
+    split(t, &l, &r, pos - 1, 0);
+    split(r, &m, &r, 0, 0);
+
+    int ret = (m!=NULL) ? m->val : -1; 
+
+    merge(&r, m, r);
+    merge(&t, l, r);
+    return ret;
+}
+
+int find_largest_pos(tnode* t, int kL, int kR){
+    tnode* l;
+    tnode* r;
+    tnode* m;
+
+	split(t, &l, &r, kL - 1,0);
+	split(r, &m, &r, kR - kL,0);
+
+	int answer = m->max;
+
+    merge(&r, m, r);
+    merge(&t, l, r);
+
+    return answer;
 }
 
 // Memory Management
@@ -83,9 +135,9 @@ void init_nodes(){
     tnodeArr = (tnode*)malloc(MAX_NODE * sizeof(tnode));
 }
 
-void clear_nodes(tnode* nArr){
+void clear_nodes(){
     Nnode = 0;
-    free(nArr);
+    free(tnodeArr);
 }
 
 /****Treap Operation****/
@@ -93,7 +145,16 @@ void clear_nodes(tnode* nArr){
 void push(tnode*t){
     if (t==NULL)
         return ;
+    t->sum += t->lazy *size(t);
+    t->val += t->lazy;
+
+    //Max
+    if(t->leaf[LEFT] != NULL)
+        t->max = max(t->val, t->leaf[LEFT]->max);
+    if(t->leaf[RIGHT] != NULL)
+        t->max = max(t->val, t->leaf[RIGHT]->max);
     
+    //Reverse
     if(t->rev)
         swapTnode(t->leaf[LEFT], t->leaf[RIGHT]);
     
@@ -102,19 +163,44 @@ void push(tnode*t){
     if(t->leaf[RIGHT])
         t->leaf[RIGHT]->rev ^= t->rev;
 
+    t->lazy = 0;
     t->rev = 0;
 }
+
+void reset(tnode*t){
+    if(t!=NULL){
+        t->sum = t->val;
+        t->max = t->val;
+    }
+}
+
+void combine(tnode** t, tnode* l, tnode* r){
+    if(l==NULL){
+        *t  = r;
+    }
+    else if(r==NULL){
+        *t = l;
+    }
+    else{
+        (*t)->sum = l->sum + r->sum;
+        (*t)->max = max(l->max, r->max);
+    }
+}
+
+
 
 // Split and Merge
 void split(tnode* t, tnode** lt, tnode** rt, int key, int add){
     if (t == NULL){
-        *lt=*rt=NULL;
+        *lt=NULL;
+        *rt=NULL;
         return;
     }
+    push(t);
 
     int ik = add + size(t->leaf[LEFT]); //implicit key
 
-    if(ik <= key){ //key is on the right
+    if(key >= ik){ //key is on the right
         split(t->leaf[RIGHT], &t->leaf[RIGHT], rt, key, ik+1);
         *lt = t;
     }
@@ -130,12 +216,14 @@ void merge(tnode** t, tnode* lt, tnode* rt){
     push(lt);
     push(rt);
 
-    if(lt == NULL)
+    if(lt == NULL){
         *t = rt; return;
-    if(rt == NULL)
+    }
+    if(rt == NULL){
         *t = lt; return;
+    }
     
-    if(lt->priority > rt->priority){
+    if(lt->pt > rt->pt){
         merge(&lt->leaf[RIGHT], lt->leaf[RIGHT], rt);
         *t = lt;
     }
@@ -159,7 +247,7 @@ int size(tnode* t){
 void updateRoot(tnode* t){
     UpdateLeafParent(t);
     UpdateSize(t);
-    Operate(t);
+    Operate(&t);
 }
 
 void UpdateLeafParent(tnode* t){
@@ -177,11 +265,14 @@ void UpdateSize(tnode* t){
         t->size = size(t->leaf[LEFT]) + size(t->leaf[RIGHT]) + 1;
 }
 
-void Operate(tnode* t){
-    if(!t)
+void Operate(tnode** t){
+    if(!*t)
         return;
-    push(t->leaf[LEFT]);
-    push(t->leaf[RIGHT]);
+    push((*t)->leaf[LEFT]);
+    push((*t)->leaf[RIGHT]);
+
+    combine(t, (*t)->leaf[LEFT], *t);
+	combine(t, *t, (*t)->leaf[RIGHT]);
 }
 
 //utils
