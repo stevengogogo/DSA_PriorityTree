@@ -51,9 +51,9 @@ void Insert(tnode**t, int prior, int pos){
 void Delete(tnode**t, int k){
     if(*t == NULL)
         return;
-    tnode* l;
-    tnode* r;
-    tnode* m;
+    tnode* l = NULL;
+    tnode* r = NULL;
+    tnode* m = NULL;
 
     split(*t, &l, &r, k-1, 0);
     split(r, &m, &r, 0, 0);
@@ -62,9 +62,9 @@ void Delete(tnode**t, int k){
 }
 
 void Increase(tnode*t, int pL, int pR, int priorD){
-    tnode* l;
-    tnode* r;
-    tnode* m;
+    tnode* l = NULL;
+    tnode* r = NULL;
+    tnode* m = NULL;
 
     split(t, &l, &r, pL - 1,0);
     split(r, &m, &r, pR - pL,0);
@@ -76,9 +76,9 @@ void Increase(tnode*t, int pL, int pR, int priorD){
 }
 
 int QueryLargest(tnode*t, int kL , int kR){
-    tnode* l;
-    tnode* r;
-    tnode* m;
+    tnode* l = NULL;
+    tnode* r = NULL;
+    tnode* m = NULL;
 
 	split(t, &l, &r, kL - 1,0);
 	split(r, &m, &r, kR - kL,0);
@@ -91,6 +91,19 @@ int QueryLargest(tnode*t, int kL , int kR){
     return answer;
 }
 
+void Reverse(tnode** t, int pL, int pR){
+    
+    tnode* l = NULL;
+    tnode* r = NULL;
+    tnode* m = NULL;
+
+    split(*t, &l, &r, pL - 1, 0);
+    split(r, &m, &r, pR - pL, 0);
+
+    m->rev ^= 1;
+    merge(&r, m, r);
+    merge(t, l, r);
+}
 
 /**Helper function**/
 
@@ -210,11 +223,11 @@ void push(tnode*t){
     
     //Reverse
     if(t->rev)
-        swapTnode(t->leaf[LEFT], t->leaf[RIGHT]);
+        swapTnode(&t->leaf[LEFT], &t->leaf[RIGHT]);
     
-    if(t->leaf[LEFT])
+    if(t->leaf[LEFT] != NULL)
         t->leaf[LEFT]->rev ^= t->rev;
-    if(t->leaf[RIGHT])
+    if(t->leaf[RIGHT] != NULL)
         t->leaf[RIGHT]->rev ^= t->rev;
 
     t->lazy = 0;
@@ -330,8 +343,8 @@ void Operate(tnode** t){
 }
 
 //utils
-void swapTnode(tnode* a, tnode* b){
-    tnode* temp = a;
-    a = b;
-    b = a;
+void swapTnode(tnode** a, tnode** b){
+    tnode* temp = *a;
+    *a = *b;
+    *b = temp;
 }
