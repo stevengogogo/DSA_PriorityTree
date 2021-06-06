@@ -46,7 +46,7 @@ typedef struct node {
 
 
 /***Problem Setup***/
-void interface(void);
+int interface(void);
 tnode* build_treap(int* p, int len);
 
 /****Main Operation****/
