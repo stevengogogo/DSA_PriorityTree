@@ -198,7 +198,22 @@ $(function() {
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="keywordtype">void</span> test_reverse(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    init_nodes();</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="comment">//Build tree</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordtype">int</span> len = 10;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordtype">int</span> p[] = {7,2,1,2,4,-12,2,2,2,2};</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <a class="code" href="structnode.html">tnode</a>* t = build_treap(p, len);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    Reverse(&amp;t, 1, 9);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    print_tree_by_query(t, len);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    clear_nodes();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;}</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="astructnode_html"><div class="ttname"><a href="structnode.html">node</a></div><div class="ttdef"><b>Definition:</b> treap.h:33</div></div>
 <div class="ttc" id="atreap_8h_html"><div class="ttname"><a href="treap_8h.html">treap.h</a></div><div class="ttdoc">Implicit Treap Implementation.</div></div>
 <div class="ttc" id="atreap_8h_html_a6636acf7ab562ea031f376a99a055654"><div class="ttname"><a href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a></div><div class="ttdeci">int QueryLargest(tnode *t, int l, int r)</div><div class="ttdef"><b>Definition:</b> treap.c:78</div></div>
