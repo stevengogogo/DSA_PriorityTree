@@ -14,5 +14,6 @@ TEST_LIST = {
     {"Treap: Increase", test_increase},
     {"Treap: Reverse", test_reverse},
     {"Treap: Find largest position (with minimum key)", test_find_largest},
+    {"Treap: Remove Largest", test_remove_largest},
     {NULL, NULL} // Terminate the test
 };

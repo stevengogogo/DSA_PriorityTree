@@ -105,6 +105,13 @@ void Reverse(tnode** t, int pL, int pR){
     merge(t, l, r);
 }
 
+void Remove(tnode**t){
+    tnode* largest = find_largest_pos(*t);
+    int argmax = get_node_pos(largest, NULL);
+
+    Delete(t, argmax);
+}
+
 /**Helper function**/
 
 /** Insert node with priority `prior` at position `pos`
@@ -172,21 +179,45 @@ int get_val_at_pos(tnode* t, int pos){
     return ret;
 }
 
-int find_largest_pos(tnode* t, int kL, int kR){
-    tnode* l;
-    tnode* r;
-    tnode* m;
+int get_node_pos(tnode*ncur, tnode* leaf){
+    	if(leaf==NULL)
+        {
+            if(ncur->parent == NULL) 
+                return size(ncur->leaf[LEFT]);
+            else 
+                return size(ncur->leaf[LEFT]) + get_node_pos(ncur->parent, ncur);
+        }
 
-	split(t, &l, &r, kL - 1,0);
-	split(r, &m, &r, kR - kL,0);
+        if(ncur->parent == NULL)
+        {
+            if(leaf == ncur->leaf[LEFT]) 
+                return 0;
+            else 
+                return size(ncur->leaf[LEFT]) + 1;
+        }
 
-	int answer = m->max;
-
-    merge(&r, m, r);
-    merge(&t, l, r);
-
-    return answer;
+        if(ncur->leaf[LEFT] == leaf) 
+            return get_node_pos(ncur->parent, ncur);
+        else 
+            return get_node_pos(ncur->parent, ncur) + size(ncur->leaf[LEFT]) + 1;
 }
+
+tnode* find_largest_pos(tnode* t){
+
+    push(t);
+    
+    if(t->leaf[LEFT] != NULL){
+        push(t->leaf[LEFT]);
+        if(t->leaf[LEFT]->max>= t->max){
+            t = find_largest_pos(t->leaf[LEFT]);
+        }
+    }
+
+
+    return t;
+}
+
+
 
 // Memory Management
 void init_nodes(){
