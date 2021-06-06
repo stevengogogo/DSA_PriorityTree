@@ -59,6 +59,8 @@ void Reverse(tnode*t, int l, int r);
 void Remove(tnode*t);
 
 /**Helper function**/
+void _Insert(tnode**t, int prior, int pos);
+void _Insert_at_start(tnode**t, int prior);
 tnode* setNewNode(int p);
 int get_val_at_pos(tnode* t, int pos);
 int find_largest_pos(tnode* t, int l, int r);

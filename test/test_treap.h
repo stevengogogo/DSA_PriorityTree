@@ -58,9 +58,15 @@ void test_insert_at_start(void){
     int EST;
 
     tnode* t = build_treap(p, len);
+
+    Insert(&t, 99,1);
+    int MAX = QueryLargest(t, 0, len);
+    TEST_CHECK(MAX == 99);
+    TEST_MSG("Got: %d; Real: %d", MAX, 99);
+
     Insert(&t, n, -1);
     print_tree(t);
-    int MAX = QueryLargest(t, 0, len);
+    MAX = QueryLargest(t, 0, len);
     TEST_CHECK(MAX == n);
     TEST_MSG("Got: %d; Real: %d", MAX, n);
 
