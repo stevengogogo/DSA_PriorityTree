@@ -19,7 +19,7 @@ do
         echo "Failed (Compare: EST / Real)"; 
         diff -y test/data/$i-EST.out test/data/$i.out;
         echo " "
-        exit 1
+        
     fi
     echo ""
 done
