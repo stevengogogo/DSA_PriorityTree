@@ -17,8 +17,8 @@ int interface(void){
     num_node = N;
     
     //Set initial priorities
-    int* p = (int*)malloc(N*sizeof(int)+1);
-    for(int i=1;i<=N;i++)
+    int* p = (int*)malloc(N*sizeof(int));
+    for(int i=0;i<N;i++)
         scanf("%d", &p[i]);
 
     //Inital Treap
@@ -30,24 +30,24 @@ int interface(void){
         if(op == 1){
             scanf("%d", &prior);
             scanf("%d", &k);
-            Insert(&t, prior, k);
+            Insert(&t, prior, k-1);
             ++num_node;
         }
         else if(op==2){
             scanf("%d", &k);
-            Delete(&t, k);
+            Delete(&t, k-1);
             --num_node;
         }
         else if(op==3){
             scanf("%d", &l);
             scanf("%d", &r);
             scanf("%d", &prior);
-            Increase(t, l, r, prior);
+            Increase(t, l-1, r-1, prior);
         }
         else if(op==4){
             scanf("%d", &l);
             scanf("%d", &r);
-            res = QueryLargest(t, l ,r);
+            res = QueryLargest(t, l-1 ,r-1);
             printf("%d", res);
             if(i!= Q-1){
                 printf("\n");
@@ -56,7 +56,7 @@ int interface(void){
         else if(op==5){
             scanf("%d", &l);
             scanf("%d", &r);
-            Reverse(&t, l ,r);
+            Reverse(&t, l-1 ,r-1);
         }
         else if(op==6){
             Remove(&t);
@@ -77,7 +77,7 @@ tnode* build_treap(int* p, int len){
     tnode* t = NULL;
 
     for(int k=0;k<len;k++){
-        Insert(&t, p[k], k+1);
+        Insert(&t, p[k], k);
     }
     return t;
 }
