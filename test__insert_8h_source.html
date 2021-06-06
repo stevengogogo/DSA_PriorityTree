@@ -75,48 +75,100 @@ $(function() {
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="treap_8h.html">treap.h</a>&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;acutest.h&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">void</span> tree_validate(<a class="code" href="structnode.html">tnode</a>* t){</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">void</span> tree_validate(<a class="code" href="structnode.html">tnode</a>* t, <span class="keywordtype">int</span>* c){</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (t==NULL)</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    *c = *c + 1;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;2;i++){</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">if</span>(t-&gt;leaf[i] != NULL){</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <span class="comment">//Priority</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            TEST_CHECK(t-&gt;priority &gt;= t-&gt;leaf[i]-&gt;priority);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        }</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;     <span class="comment">//Key</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">if</span> (t-&gt;leaf[LEFT] != NULL)</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    TEST_CHECK(t-&gt;size &gt; t-&gt;leaf[LEFT]-&gt;size);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">if</span>(t-&gt;leaf[RIGHT] != NULL)</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    TEST_CHECK(t-&gt;size &lt; t-&gt;leaf[RIGHT]-&gt;size);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    tree_validate(t-&gt;leaf[LEFT]);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    tree_validate(t-&gt;leaf[RIGHT]);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            TEST_CHECK(t-&gt;pt &gt;= t-&gt;leaf[i]-&gt;pt);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        }</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    }</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;     <span class="comment">//Key</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">if</span> (t-&gt;leaf[LEFT] != NULL){</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        TEST_CHECK(t-&gt;pt &gt;= t-&gt;leaf[LEFT]-&gt;pt);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        TEST_CHECK(t-&gt;key &gt;= t-&gt;leaf[LEFT]-&gt;key);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        TEST_MSG(<span class="stringliteral">&quot;Root: %d;Left: %d&quot;</span>, t-&gt;key, t-&gt;leaf[LEFT]-&gt;key);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">if</span>(t-&gt;leaf[RIGHT] != NULL){</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        TEST_CHECK(t-&gt;pt &gt;= t-&gt;leaf[RIGHT]-&gt;pt);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        TEST_CHECK(t-&gt;key &lt;= t-&gt;leaf[RIGHT]-&gt;key);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        TEST_MSG(<span class="stringliteral">&quot;Root: %d;RIGHT: %d&quot;</span>, t-&gt;key, t-&gt;leaf[RIGHT]-&gt;key);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    }</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">void</span> test_build(<span class="keywordtype">void</span>){</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    init_nodes();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">int</span> len = 4;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">int</span> p[] = {1,2,4,-1};</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="structnode.html">tnode</a>* t = build_treap(p, len);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    TEST_CHECK(t!=NULL);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    tree_validate(t);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    clear_nodes();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    tree_validate(t-&gt;leaf[0], c);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    tree_validate(t-&gt;leaf[1], c);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> print_tree(<a class="code" href="structnode.html">tnode</a>* t){</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">if</span> (t==NULL){</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    print_tree(t-&gt;leaf[0]);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    printf(<span class="stringliteral">&quot;%d &quot;</span>,t-&gt;val);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    print_tree(t-&gt;leaf[1]);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> check_heap(<a class="code" href="structnode.html">tnode</a>* t){</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;     <span class="keywordflow">if</span> (t==NULL){</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    check_heap(t-&gt;leaf[LEFT]);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">if</span>(t-&gt;leaf[LEFT]!=NULL)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        TEST_CHECK(t-&gt;pt &gt; t-&gt;leaf[LEFT]-&gt;pt);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">if</span>(t-&gt;leaf[RIGHT]!=NULL)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        TEST_CHECK(t-&gt;pt &gt; t-&gt;leaf[RIGHT]-&gt;pt);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    check_heap(t-&gt;leaf[RIGHT]);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">void</span> test_build(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    init_nodes();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">int</span> len = 10;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">int</span> p[] = {7,2,1,2,4,-12,2,2,2,2};</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">int</span> c =0;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">int</span> EST;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="structnode.html">tnode</a>* t = build_treap(p, len);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    TEST_CHECK(t!=NULL);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">//TEST_CHECK(t-&gt;leaf[RIGHT]!=NULL);</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">//tree_validate(t, &amp;c);</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">//TEST_CHECK(c==4);</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">//TEST_MSG(&quot;length: %d / REAL: %d&quot;, c, len);</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;len;i++){</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        EST = get_val_at_pos(t, i);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        TEST_CHECK(EST == p[i]);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        TEST_MSG(<span class="stringliteral">&quot;Real: %d / EST: %d&quot;</span>, p[i], EST);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">//Heap Property</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    check_heap(t);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">//Print Priorities</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    print_tree(t);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">//Test largest</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">int</span> MAX = <a class="code" href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a>(t, 4, len);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    TEST_CHECK(MAX == 4);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    clear_nodes();</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="astructnode_html"><div class="ttname"><a href="structnode.html">node</a></div><div class="ttdef"><b>Definition:</b> treap.h:33</div></div>
 <div class="ttc" id="atreap_8h_html"><div class="ttname"><a href="treap_8h.html">treap.h</a></div><div class="ttdoc">Implicit Treap Implementation.</div></div>
+<div class="ttc" id="atreap_8h_html_a6636acf7ab562ea031f376a99a055654"><div class="ttname"><a href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a></div><div class="ttdeci">int QueryLargest(tnode *t, int l, int r)</div><div class="ttdef"><b>Definition:</b> treap.c:64</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
