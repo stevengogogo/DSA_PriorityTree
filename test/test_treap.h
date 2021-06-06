@@ -164,7 +164,7 @@ void test_find_largest(void){
 
 
 
-    tnode* largest = find_largest_pos(t);
+    tnode* largest = find_largest_minpos(t);
     pos = get_node_pos(largest, NULL);
     TEST_CHECK(largest->val == 14);
     TEST_MSG("Got: %d", largest->val); 
@@ -189,6 +189,7 @@ void test_remove_largest(void){
 
     Remove(&t);
     Remove(&t);
+    print_tree_by_query(t, len-3);
     TEST_CHECK(get_val_at_pos(t, 0) == 2);
     TEST_MSG("Got: %d", get_val_at_pos(t, 0));
 

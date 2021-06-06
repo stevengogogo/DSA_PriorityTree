@@ -58,7 +58,7 @@ void Delete(tnode**t, int k){
     split(*t, &l, &r, k-1, 0);
     split(r, &m, &r, 0, 0);
     merge(t, l, r);
-    Operate(t);
+    updateRoot(*t);
 }
 
 void Increase(tnode*t, int pL, int pR, int priorD){
@@ -106,7 +106,7 @@ void Reverse(tnode** t, int pL, int pR){
 }
 
 void Remove(tnode**t){
-    tnode* largest = find_largest_pos(*t);
+    tnode* largest = find_largest_minpos(*t);
     int argmax = get_node_pos(largest, NULL);
 
     Delete(t, argmax);
@@ -202,14 +202,14 @@ int get_node_pos(tnode*ncur, tnode* leaf){
             return get_node_pos(ncur->parent, ncur) + size(ncur->leaf[LEFT]) + 1;
 }
 
-tnode* find_largest_pos(tnode* t){
+tnode* find_largest_minpos(tnode* t){
 
     push(t);
     
     if(t->leaf[LEFT] != NULL){
         push(t->leaf[LEFT]);
         if(t->leaf[LEFT]->max>= t->max){
-            t = find_largest_pos(t->leaf[LEFT]);
+            t = find_largest_minpos(t->leaf[LEFT]);
         }
     }
 
@@ -353,7 +353,7 @@ void UpdateLeafParent(tnode* t){
         return ;
 
     for(int i=0;i<2;i++){
-        if (t->leaf[i])
+        if (t->leaf[i] != NULL)
             t->leaf[i]->parent = t;
     }
 }
@@ -366,6 +366,7 @@ void UpdateSize(tnode* t){
 void Operate(tnode** t){
     if(!*t)
         return;
+    reset(*t);
     push((*t)->leaf[LEFT]);
     push((*t)->leaf[RIGHT]);
 
