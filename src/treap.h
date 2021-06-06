@@ -55,7 +55,7 @@ void Delete(tnode**t, int k);
 void Increase(tnode*t, int pL, int pR, int priorD);
 /** Return largest element in interval [l,r]*/
 int QueryLargest(tnode*t, int l , int r);
-void Reverse(tnode*t, int l, int r);
+void Reverse(tnode**t, int l, int r);
 void Remove(tnode*t);
 
 /**Helper function**/
@@ -99,6 +99,6 @@ void UpdateSize(tnode* t);
 void Operate(tnode** t);
 
 //utils
-void swapTnode(tnode* a, tnode* b);
+void swapTnode(tnode** a, tnode** b);
 
 #endif
