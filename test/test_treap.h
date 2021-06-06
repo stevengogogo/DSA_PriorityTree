@@ -187,6 +187,12 @@ void test_remove_largest(void){
     TEST_CHECK(QueryLargest(t,0,len-1) == 7);
     TEST_CHECK(get_val_at_pos(t, 4) == -12);
 
+    Remove(&t);
+    Remove(&t);
+    TEST_CHECK(get_val_at_pos(t, 0) == 2);
+    TEST_MSG("Got: %d", get_val_at_pos(t, 0));
+
+
 
     clear_nodes();
 
