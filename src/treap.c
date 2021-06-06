@@ -59,6 +59,7 @@ void Delete(tnode**t, int k){
     split(r, &m, &r, 0, 0);
     merge(t, l, r);
     updateRoot(*t);
+    (*t)->parent = NULL;
 }
 
 void Increase(tnode*t, int pL, int pR, int priorD){
