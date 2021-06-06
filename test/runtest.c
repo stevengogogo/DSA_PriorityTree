@@ -11,5 +11,6 @@ TEST_LIST = {
     {"Treap: Insertion and build", test_build},
     {"Treap: Insertion at start", test_insert_at_start},
     {"Treap: Deletion", test_delete},
+    {"Treap: Increase", test_increase},
     {NULL, NULL} // Terminate the test
 };

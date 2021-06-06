@@ -51,6 +51,14 @@ static void print_tree(tnode* t){
     print_tree(t->leaf[1]);
 }
 
+static void print_tree_by_query(tnode* t, int len){
+    int val;
+    for(int i=0;i<len;i++){
+        val = get_val_at_pos(t, i);
+        printf("%d ", val);
+    }
+}
+
 static void check_heap(tnode* t){
      if (t==NULL){
         return;
