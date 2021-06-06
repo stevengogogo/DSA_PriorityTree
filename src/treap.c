@@ -60,6 +60,17 @@ void Insert(tnode**t, int prior, int pos){
     //Operate(t);
 }
 
+void Delete(tnode**t, int k){
+    if(*t == NULL)
+        return;
+    tnode* l;
+    tnode* r;
+    tnode* m;
+
+    split(*t, &l, &r, k-1, 0);
+    split(r, &m, &r, 0, 0);
+    merge(t, l, r);
+}
 
 int QueryLargest(tnode*t, int kL , int kR){
     tnode* l;

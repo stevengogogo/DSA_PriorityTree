@@ -3,11 +3,12 @@
 #include "acutest.h"
 
 #include "test_utils.h"
-#include "test_insert.h"
+#include "test_treap.h"
 
 // Run TESTs 
 TEST_LIST = {
     {"Utility", test_utils},
-    {"Build treap", test_build},
+    {"Treap: Insertion and build", test_build},
+    {"Treap: Deletion", test_delete},
     {NULL, NULL} // Terminate the test
 };
