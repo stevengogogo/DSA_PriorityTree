@@ -37,8 +37,23 @@ void print_tree(tnode* t){
         return;
     }
     print_tree(t->leaf[0]);
-    printf("%d ",t->key);
+    printf("%d ",t->val);
     print_tree(t->leaf[1]);
+}
+
+void check_heap(tnode* t){
+     if (t==NULL){
+        return;
+    }
+
+    check_heap(t->leaf[LEFT]);
+    if(t->leaf[LEFT]!=NULL)
+        TEST_CHECK(t->pt > t->leaf[LEFT]->pt);
+
+    if(t->leaf[RIGHT]!=NULL)
+        TEST_CHECK(t->pt > t->leaf[RIGHT]->pt);
+
+    check_heap(t->leaf[RIGHT]);
 }
 
 
@@ -47,7 +62,6 @@ void test_build(void){
 
     int len = 10;
     int p[] = {7,2,1,2,4,-12,2,2,2,2};
-    int p2[] = {7,2,1,2,4,-12,2,2,2,2};
     int c =0;
     int EST;
 
@@ -60,10 +74,21 @@ void test_build(void){
 
     for(int i=0;i<len;i++){
         EST = get_val_at_pos(t, i);
-        TEST_CHECK(EST == p2[i]);
-        TEST_MSG("Real: %d / EST: %d", p2[i], EST);
+        TEST_CHECK(EST == p[i]);
+        TEST_MSG("Real: %d / EST: %d", p[i], EST);
     }
+
+    //Heap Property
+    check_heap(t);
+    //Print Priorities
     print_tree(t);
+
+
+    //Test largest
+    int MAX = QueryLargest(t, 4, len);
+    TEST_CHECK(MAX == 4);
+
+
     clear_nodes();
 }
 

@@ -44,6 +44,7 @@ void Insert(tnode**t, int prior, int pos){
     tnode* newt = setNewNode(prior);
     newt->key = pos;
     newt->val = prior;
+    newt->max = prior;
 
     if(*t==NULL){
         *t = newt;
@@ -60,6 +61,23 @@ void Insert(tnode**t, int prior, int pos){
 }
 
 
+int QueryLargest(tnode*t, int kL , int kR){
+    tnode* l;
+    tnode* r;
+    tnode* m;
+
+	split(t, &l, &r, kL - 1,0);
+	split(r, &m, &r, kR - kL,0);
+
+	int answer = m->max;
+
+    merge(&r, m, r);
+    merge(&t, l, r);
+
+    return answer;
+}
+
+
 /**Helper function**/
 tnode* setNewNode(int val){
     tnode* newt = &tnodeArr[Nnode];
@@ -69,6 +87,7 @@ tnode* setNewNode(int val){
     newt->key = 0;
     newt->val = val;
     newt->sum = val;
+    newt->max = val;
     //Default
     newt->parent = NULL;
     newt->leaf[LEFT] = NULL;
@@ -93,6 +112,22 @@ int get_val_at_pos(tnode* t, int pos){
     return ret;
 }
 
+int find_largest_pos(tnode* t, int kL, int kR){
+    tnode* l;
+    tnode* r;
+    tnode* m;
+
+	split(t, &l, &r, kL - 1,0);
+	split(r, &m, &r, kR - kL,0);
+
+	int answer = m->max;
+
+    merge(&r, m, r);
+    merge(&t, l, r);
+
+    return answer;
+}
+
 // Memory Management
 void init_nodes(){
 
@@ -113,6 +148,13 @@ void push(tnode*t){
     t->sum += t->lazy *size(t);
     t->val += t->lazy;
 
+    //Max
+    if(t->leaf[LEFT] != NULL)
+        t->max = max(t->val, t->leaf[LEFT]->max);
+    if(t->leaf[RIGHT] != NULL)
+        t->max = max(t->val, t->leaf[RIGHT]->max);
+    
+    //Reverse
     if(t->rev)
         swapTnode(t->leaf[LEFT], t->leaf[RIGHT]);
     
@@ -128,6 +170,7 @@ void push(tnode*t){
 void reset(tnode*t){
     if(t!=NULL){
         t->sum = t->val;
+        t->max = t->val;
     }
 }
 
@@ -140,6 +183,7 @@ void combine(tnode** t, tnode* l, tnode* r){
     }
     else{
         (*t)->sum = l->sum + r->sum;
+        (*t)->max = max(l->max, r->max);
     }
 }
 

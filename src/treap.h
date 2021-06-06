@@ -37,6 +37,7 @@ typedef struct node {
     int lazy;//waiting operation
     int size;//number of nodes under it
     int val; // book priority
+    int max;
     int sum; // summation under the node
     struct node *parent;
     struct node *leaf[2];
@@ -52,14 +53,15 @@ tnode* build_treap(int* p, int len);
 void Insert(tnode**t, int prior, int pos);
 void Delete(tnode*t, int k);
 void Increase(tnode*t, int l, int r, int p);
-void QueryLargest(tnode*t, int l , int r);
+/** Return largest element in interval [l,r]*/
+int QueryLargest(tnode*t, int l , int r);
 void Reverse(tnode*t, int l, int r);
 void Remove(tnode*t);
 
 /**Helper function**/
 tnode* setNewNode(int p);
 int get_val_at_pos(tnode* t, int pos);
-
+int find_largest_pos(tnode* t, int l, int r);
 // Memory Management
 void init_nodes();
 void clear_nodes();
