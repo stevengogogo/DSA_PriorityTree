@@ -1,10 +1,20 @@
-#ifndef TEST_INSERT_H
-#define TEST_INSERT_H
+/**
+ * @file utility.h
+ * @brief Helper function for testing
+ * @version 0.1
+ * @date 2021-06-06
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+#ifndef UTILITY_H
+#define UTILITY_H
 
 #include "treap.h"
 #include "acutest.h"
+#include "stdbool.h"
 
-void tree_validate(tnode* t, int* c){
+static void tree_validate(tnode* t, int* c){
     if (t==NULL)
         return;
     *c = *c + 1;
@@ -32,7 +42,7 @@ void tree_validate(tnode* t, int* c){
     tree_validate(t->leaf[1], c);
 }
 
-void print_tree(tnode* t){
+static void print_tree(tnode* t){
     if (t==NULL){
         return;
     }
@@ -41,7 +51,7 @@ void print_tree(tnode* t){
     print_tree(t->leaf[1]);
 }
 
-void check_heap(tnode* t){
+static void check_heap(tnode* t){
      if (t==NULL){
         return;
     }
@@ -57,41 +67,5 @@ void check_heap(tnode* t){
 }
 
 
-void test_build(void){
-    init_nodes();
 
-    int len = 10;
-    int p[] = {7,2,1,2,4,-12,2,2,2,2};
-    int c =0;
-    int EST;
-
-    tnode* t = build_treap(p, len);
-    TEST_CHECK(t!=NULL);
-    //TEST_CHECK(t->leaf[RIGHT]!=NULL);
-    //tree_validate(t, &c);
-    //TEST_CHECK(c==4);
-    //TEST_MSG("length: %d / REAL: %d", c, len);
-
-    for(int i=0;i<len;i++){
-        EST = get_val_at_pos(t, i);
-        TEST_CHECK(EST == p[i]);
-        TEST_MSG("Real: %d / EST: %d", p[i], EST);
-    }
-
-    //Heap Property
-    check_heap(t);
-    //Print Priorities
-    print_tree(t);
-
-
-    //Test largest
-    int MAX = QueryLargest(t, 4, len);
-    TEST_CHECK(MAX == 4);
-
-
-    clear_nodes();
-}
-
-
-
-#endif
+#endif 

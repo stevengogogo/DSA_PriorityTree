@@ -10,6 +10,8 @@ void test_utils(void)
     a = 1; b= 2;
     
     TEST_CHECK(argmax(a,b)  == 1 );
+    TEST_CHECK(max(a,b) == 2);
+    TEST_CHECK(max(b,a)==2);
 }
 
 
