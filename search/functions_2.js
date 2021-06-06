@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['push_21',['push',['../treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de',1,'treap.c']]]
+  ['merge_21',['merge',['../treap_8h.html#a2e060c3f9e770576d214a9fd39823094',1,'treap.c']]]
 ];

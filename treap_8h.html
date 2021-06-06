@@ -151,7 +151,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Reverse</b> (<a class
 <tr class="memitem:a803cefd1ab13ecd2f5f523d7c1e7ff64"><td class="memItemLeft" align="right" valign="top"><a id="a803cefd1ab13ecd2f5f523d7c1e7ff64"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Remove</b> (<a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> *t)</td></tr>
 <tr class="separator:a803cefd1ab13ecd2f5f523d7c1e7ff64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16fe16e123b94e35f2695758f65054ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="treap_8h.html#a16fe16e123b94e35f2695758f65054ee">setNewNode</a> (int p)</td></tr>
+<tr class="memitem:a17e8f48e645666115ccc87a82ab4e4e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="treap_8h.html#a17e8f48e645666115ccc87a82ab4e4e1">_Insert</a> (<a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> **t, int prior, int pos)</td></tr>
+<tr class="separator:a17e8f48e645666115ccc87a82ab4e4e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4f41c71fccaa9ecf9c8671bd495d32c"><td class="memItemLeft" align="right" valign="top"><a id="ac4f41c71fccaa9ecf9c8671bd495d32c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>_Insert_at_start</b> (<a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> **t, int prior)</td></tr>
+<tr class="separator:ac4f41c71fccaa9ecf9c8671bd495d32c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16fe16e123b94e35f2695758f65054ee"><td class="memItemLeft" align="right" valign="top"><a id="a16fe16e123b94e35f2695758f65054ee"></a>
+<a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>setNewNode</b> (int p)</td></tr>
 <tr class="separator:a16fe16e123b94e35f2695758f65054ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ca649fd222e3b42a3d01227d2512d08"><td class="memItemLeft" align="right" valign="top"><a id="a9ca649fd222e3b42a3d01227d2512d08"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>get_val_at_pos</b> (<a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> *t, int pos)</td></tr>
@@ -230,6 +236,42 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>swapTnode</b> (<a cla
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a17e8f48e645666115ccc87a82ab4e4e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17e8f48e645666115ccc87a82ab4e4e1">&#9670;&nbsp;</a></span>_Insert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _Insert </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a> **&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>prior</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Helper function</p>
+<p>Helper function Insert node with priority <code>prior</code> at position <code>pos</code> </p><dl class="section note"><dt>Note</dt><dd>pos&gt;=0. This function can not insert at beginning.Use _Insert_at_start instead. </dd></dl>
+
+</div>
+</div>
 <a id="a2e060c3f9e770576d214a9fd39823094"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2e060c3f9e770576d214a9fd39823094">&#9670;&nbsp;</a></span>merge()</h2>
 
@@ -325,25 +367,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>swapTnode</b> (<a cla
       </table>
 </div><div class="memdoc">
 <p>Return largest element in interval [l,r] </p>
-
-</div>
-</div>
-<a id="a16fe16e123b94e35f2695758f65054ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a16fe16e123b94e35f2695758f65054ee">&#9670;&nbsp;</a></span>setNewNode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a>* setNewNode </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>val</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Helper function </p>
 
 </div>
 </div>

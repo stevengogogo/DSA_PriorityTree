@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['argmax_19',['argmax',['../utils_8h.html#a1fa7fd55f201216ebf7800abb1c427a8',1,'utils.c']]]
+  ['_5finsert_19',['_Insert',['../treap_8h.html#a17e8f48e645666115ccc87a82ab4e4e1',1,'treap.c']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['setnewnode_6',['setNewNode',['../treap_8h.html#a16fe16e123b94e35f2695758f65054ee',1,'treap.c']]]
+  ['querylargest_6',['QueryLargest',['../treap_8h.html#a6636acf7ab562ea031f376a99a055654',1,'treap.c']]]
 ];
