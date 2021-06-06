@@ -98,7 +98,7 @@ $(function() {
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">/***Problem Setup***/</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> interface(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">int</span> interface(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<a class="code" href="structnode.html">tnode</a>* build_treap(<span class="keywordtype">int</span>* p, <span class="keywordtype">int</span> len);</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">/****Main Operation****/</span></div>
@@ -145,13 +145,13 @@ $(function() {
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="astructnode_html"><div class="ttname"><a href="structnode.html">node</a></div><div class="ttdef"><b>Definition:</b> treap.h:33</div></div>
-<div class="ttc" id="atreap_8h_html_a08073cd1252b96f74bb5714c4347276e"><div class="ttname"><a href="treap_8h.html#a08073cd1252b96f74bb5714c4347276e">UpdateLeafParent</a></div><div class="ttdeci">void UpdateLeafParent(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:353</div></div>
-<div class="ttc" id="atreap_8h_html_a17e8f48e645666115ccc87a82ab4e4e1"><div class="ttname"><a href="treap_8h.html#a17e8f48e645666115ccc87a82ab4e4e1">_Insert</a></div><div class="ttdeci">void _Insert(tnode **t, int prior, int pos)</div><div class="ttdef"><b>Definition:</b> treap.c:122</div></div>
-<div class="ttc" id="atreap_8h_html_a2e060c3f9e770576d214a9fd39823094"><div class="ttname"><a href="treap_8h.html#a2e060c3f9e770576d214a9fd39823094">merge</a></div><div class="ttdeci">void merge(tnode **t, tnode *lt, tnode *rt)</div><div class="ttdoc">Merge two treaps. Assume all kets in rt &gt; lt.</div><div class="ttdef"><b>Definition:</b> treap.c:315</div></div>
-<div class="ttc" id="atreap_8h_html_a57648cfd389c2bf31fea6cef3648be5c"><div class="ttname"><a href="treap_8h.html#a57648cfd389c2bf31fea6cef3648be5c">UpdateSize</a></div><div class="ttdeci">void UpdateSize(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:363</div></div>
-<div class="ttc" id="atreap_8h_html_a6636acf7ab562ea031f376a99a055654"><div class="ttname"><a href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a></div><div class="ttdeci">int QueryLargest(tnode *t, int l, int r)</div><div class="ttdef"><b>Definition:</b> treap.c:80</div></div>
+<div class="ttc" id="atreap_8h_html_a08073cd1252b96f74bb5714c4347276e"><div class="ttname"><a href="treap_8h.html#a08073cd1252b96f74bb5714c4347276e">UpdateLeafParent</a></div><div class="ttdeci">void UpdateLeafParent(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:394</div></div>
+<div class="ttc" id="atreap_8h_html_a17e8f48e645666115ccc87a82ab4e4e1"><div class="ttname"><a href="treap_8h.html#a17e8f48e645666115ccc87a82ab4e4e1">_Insert</a></div><div class="ttdeci">void _Insert(tnode **t, int prior, int pos)</div><div class="ttdef"><b>Definition:</b> treap.c:163</div></div>
+<div class="ttc" id="atreap_8h_html_a2e060c3f9e770576d214a9fd39823094"><div class="ttname"><a href="treap_8h.html#a2e060c3f9e770576d214a9fd39823094">merge</a></div><div class="ttdeci">void merge(tnode **t, tnode *lt, tnode *rt)</div><div class="ttdoc">Merge two treaps. Assume all kets in rt &gt; lt.</div><div class="ttdef"><b>Definition:</b> treap.c:356</div></div>
+<div class="ttc" id="atreap_8h_html_a57648cfd389c2bf31fea6cef3648be5c"><div class="ttname"><a href="treap_8h.html#a57648cfd389c2bf31fea6cef3648be5c">UpdateSize</a></div><div class="ttdeci">void UpdateSize(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:404</div></div>
+<div class="ttc" id="atreap_8h_html_a6636acf7ab562ea031f376a99a055654"><div class="ttname"><a href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a></div><div class="ttdeci">int QueryLargest(tnode *t, int l, int r)</div><div class="ttdef"><b>Definition:</b> treap.c:121</div></div>
 <div class="ttc" id="atreap_8h_html_ab7767888cfea8af07851e50456e4e0d8"><div class="ttname"><a href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a></div><div class="ttdeci">struct node tnode</div></div>
-<div class="ttc" id="atreap_8h_html_af5ce0c13f2d5a3d7a7ff3dfc437c77de"><div class="ttname"><a href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a></div><div class="ttdeci">void push(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:238</div></div>
+<div class="ttc" id="atreap_8h_html_af5ce0c13f2d5a3d7a7ff3dfc437c77de"><div class="ttname"><a href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a></div><div class="ttdeci">void push(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:279</div></div>
 <div class="ttc" id="autils_8h_html"><div class="ttname"><a href="utils_8h.html">utils.h</a></div><div class="ttdoc">General Utilities for C language.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
