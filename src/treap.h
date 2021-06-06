@@ -52,7 +52,7 @@ tnode* build_treap(int* p, int len);
 /****Main Operation****/
 void Insert(tnode**t, int prior, int pos);
 void Delete(tnode**t, int k);
-void Increase(tnode*t, int l, int r, int p);
+void Increase(tnode*t, int pL, int pR, int priorD);
 /** Return largest element in interval [l,r]*/
 int QueryLargest(tnode*t, int l , int r);
 void Reverse(tnode*t, int l, int r);

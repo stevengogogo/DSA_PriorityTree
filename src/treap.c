@@ -61,6 +61,20 @@ void Delete(tnode**t, int k){
     Operate(t);
 }
 
+void Increase(tnode*t, int pL, int pR, int priorD){
+    tnode* l;
+    tnode* r;
+    tnode* m;
+
+    split(t, &l, &r, pL - 1,0);
+    split(r, &m, &r, pR - pL,0);
+
+    m->lazy += priorD;
+
+    merge(&r, m, r);
+    merge(&t, l, r);
+}
+
 int QueryLargest(tnode*t, int kL , int kR){
     tnode* l;
     tnode* r;
@@ -182,12 +196,17 @@ void push(tnode*t){
     t->val += t->lazy;
 
     //Max
-    if(t->leaf[LEFT] != NULL)
+    if(t->leaf[LEFT] != NULL){
         t->max = max(t->val, t->leaf[LEFT]->max);
-    if(t->leaf[RIGHT] != NULL)
+        t->leaf[LEFT]->lazy += t->lazy;
+    }
+    if(t->leaf[RIGHT] != NULL){
         t->max = max(t->val, t->leaf[RIGHT]->max);
-    if(t->leaf[LEFT] == NULL && t->leaf[RIGHT] == NULL)
+        t->leaf[RIGHT]->lazy += t->lazy;
+    }
+    if(t->leaf[LEFT] == NULL && t->leaf[RIGHT] == NULL){
         t->max = t->val;
+    }
     
     //Reverse
     if(t->rev)
