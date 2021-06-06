@@ -54,10 +54,10 @@ void Insert(tnode**t, int prior, int pos){
     tnode* l = NULL;
     tnode* r = NULL;
 
-    split(*t, &l, &r, pos-1, 0);
+    split(*t, &l, &r, pos, 0);
     merge(&l, l, newt);
     merge(t, l, r);
-    //Operate(t);
+    Operate(t);
 }
 
 void Delete(tnode**t, int k){
@@ -164,6 +164,8 @@ void push(tnode*t){
         t->max = max(t->val, t->leaf[LEFT]->max);
     if(t->leaf[RIGHT] != NULL)
         t->max = max(t->val, t->leaf[RIGHT]->max);
+    if(t->leaf[LEFT] == NULL && t->leaf[RIGHT] == NULL)
+        t->max = t->val;
     
     //Reverse
     if(t->rev)
