@@ -4,10 +4,13 @@ static int Nnode;
 static tnode* tnodeArr;
 
 // Problem Setup
-void interface(void){
+int interface(void){
     init_nodes();
     int N=0;
     int Q=0;
+    int res;
+    int op;
+    int prior,k,l,r;
 
     //Setup N/Q
     scanf("%d%d",&N, &Q);
@@ -18,14 +21,52 @@ void interface(void){
         scanf("%d", &p[i]);
 
     //Inital Treap
-    build_treap(p, N);
+    tnode* t = build_treap(p, N);
 
     //Operation
     for(int i=0;i<Q;i++){
-        //TODO
+        scanf("%d", &op);
+        if(op == 1){
+            scanf("%d", &prior);
+            scanf("%d", &k);
+            Insert(&t, prior, k);
+        }
+        else if(op==2){
+            scanf("%d", &k);
+            Delete(&t, k);
+        }
+        else if(op==3){
+            scanf("%d", &l);
+            scanf("%d", &r);
+            scanf("%d", &prior);
+            Increase(t, l, r, prior);
+        }
+        else if(op==4){
+            scanf("%d", &l);
+            scanf("%d", &r);
+            res = QueryLargest(t, l ,r);
+            printf("%d", res);
+            if(i!= Q-1){
+                printf("\n");
+            }
+        }
+        else if(op==5){
+            scanf("%d", &l);
+            scanf("%d", &r);
+            Reverse(&t, l ,r);
+        }
+        else if(op==6){
+            Remove(&t);
+        }
+        else{//Error
+            clear_nodes();
+            return -1;
+        }
     }
 
     clear_nodes();
+
+    return 0;
 }
 
 tnode* build_treap(int* p, int len){
