@@ -32,10 +32,12 @@
  */
 typedef struct node {
     int pt;//for heap arrangement
-    int key;//book priority
+    int key;//book position [implicit]
     int rev; //reverse
     int lazy;//waiting operation
     int size;//number of nodes under it
+    int val; // book priority
+    int sum; // summation under the node
     struct node *parent;
     struct node *leaf[2];
 } tnode;
@@ -47,7 +49,7 @@ void interface(void);
 tnode* build_treap(int* p, int len);
 
 /****Main Operation****/
-void Insert(tnode** t, int p, int k);
+void Insert(tnode**t, int prior, int pos);
 void Delete(tnode*t, int k);
 void Increase(tnode*t, int l, int r, int p);
 void QueryLargest(tnode*t, int l , int r);
@@ -56,8 +58,7 @@ void Remove(tnode*t);
 
 /**Helper function**/
 tnode* setNewNode(int p);
-
-
+int get_val_at_pos(tnode* t, int pos);
 
 // Memory Management
 void init_nodes();
@@ -68,7 +69,8 @@ void clear_nodes();
 
 /** Update the revert flag*/
 void push(tnode* t);
-
+void reset(tnode* t);
+void combine(tnode** t, tnode* l, tnode* r);
 // Split and Merge
 void split(tnode* t, tnode** lt, tnode** rt, int key, int add);
 
@@ -90,7 +92,7 @@ void updateRoot(tnode* t);
 void UpdateLeafParent(tnode* t);
 /** Update number of nodes below t (including t)*/
 void UpdateSize(tnode* t);
-void Operate(tnode* t);
+void Operate(tnode** t);
 
 //utils
 void swapTnode(tnode* a, tnode* b);
