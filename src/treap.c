@@ -11,9 +11,10 @@ int interface(void){
     int res;
     int op;
     int prior,k,l,r;
-
+    int num_node;
     //Setup N/Q
     scanf("%d%d",&N, &Q);
+    num_node = N;
     
     //Set initial priorities
     int* p = (int*)malloc(N*sizeof(int)+1);
@@ -30,10 +31,12 @@ int interface(void){
             scanf("%d", &prior);
             scanf("%d", &k);
             Insert(&t, prior, k);
+            ++num_node;
         }
         else if(op==2){
             scanf("%d", &k);
             Delete(&t, k);
+            --num_node;
         }
         else if(op==3){
             scanf("%d", &l);
@@ -57,6 +60,7 @@ int interface(void){
         }
         else if(op==6){
             Remove(&t);
+            --num_node;
         }
         else{//Error
             clear_nodes();
