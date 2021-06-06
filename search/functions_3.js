@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['querylargest_18',['QueryLargest',['../treap_8h.html#a6636acf7ab562ea031f376a99a055654',1,'treap.c']]]
+  ['querylargest_22',['QueryLargest',['../treap_8h.html#a6636acf7ab562ea031f376a99a055654',1,'treap.c']]]
 ];

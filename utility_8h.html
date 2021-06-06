@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>C Project Template: test/test_utils.h Source File</title>
+<title>C Project Template: test/utility.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -66,30 +66,46 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">test_utils.h</div>  </div>
+<div class="title">utility.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TEST_UTILS_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define TEST_UTILS_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;acutest.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="utils_8h.html">utils.h</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">void</span> test_utils(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">int</span> a, b;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    a = 1; b= 2;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    TEST_CHECK(<a class="code" href="utils_8h.html#a1fa7fd55f201216ebf7800abb1c427a8">argmax</a>(a,b)  == 1 );</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    TEST_CHECK(max(a,b) == 2);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    TEST_CHECK(max(b,a)==2);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="autils_8h_html"><div class="ttname"><a href="utils_8h.html">utils.h</a></div><div class="ttdoc">General Utilities for C language.</div></div>
-<div class="ttc" id="autils_8h_html_a1fa7fd55f201216ebf7800abb1c427a8"><div class="ttname"><a href="utils_8h.html#a1fa7fd55f201216ebf7800abb1c427a8">argmax</a></div><div class="ttdeci">int argmax(int a, int b)</div><div class="ttdoc">Argmax function with intergers.</div><div class="ttdef"><b>Definition:</b> utils.c:4</div></div>
-</div><!-- fragment --></div><!-- contents -->
+
+<p>Helper function for testing.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="treap_8h_source.html">treap.h</a>&quot;</code><br />
+<code>#include &quot;acutest.h&quot;</code><br />
+<code>#include &quot;stdbool.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for utility.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="utility_8h__incl.png" border="0" usemap="#atest_2utility_8h" alt=""/></div>
+<map name="atest_2utility_8h" id="atest_2utility_8h">
+<area shape="rect" title="Helper function for testing." alt="" coords="169,5,257,32"/>
+<area shape="rect" href="treap_8h.html" title="Implicit Treap Implementation." alt="" coords="90,80,151,107"/>
+<area shape="rect" title=" " alt="" coords="175,80,250,107"/>
+<area shape="rect" title=" " alt="" coords="274,80,349,107"/>
+<area shape="rect" title=" " alt="" coords="5,155,65,181"/>
+<area shape="rect" title=" " alt="" coords="89,155,152,181"/>
+<area shape="rect" href="utils_8h.html" title="General Utilities for C language." alt="" coords="177,155,233,181"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="utility_8h__dep__incl.png" border="0" usemap="#atest_2utility_8hdep" alt=""/></div>
+<map name="atest_2utility_8hdep" id="atest_2utility_8hdep">
+<area shape="rect" title="Helper function for testing." alt="" coords="19,5,107,32"/>
+<area shape="rect" href="test__treap_8h.html" title="Test Treap operation." alt="" coords="5,80,121,107"/>
+</map>
+</div>
+</div>
+<p><a href="utility_8h_source.html">Go to the source code of this file.</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Helper function for testing. </p>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2021-06-06</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2021 </dd></dl>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
