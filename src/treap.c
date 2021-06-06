@@ -40,24 +40,12 @@ tnode* build_treap(int* p, int len){
 
 /****Main Operation****/
 void Insert(tnode**t, int prior, int pos){
-    //set new node
-    tnode* newt = setNewNode(prior);
-    newt->key = pos;
-    newt->val = prior;
-    newt->max = prior;
-
-    if(*t==NULL){
-        *t = newt;
-        return;
+    if(pos==-1){
+        _Insert_at_start(t, prior);
     }
-    
-    tnode* l = NULL;
-    tnode* r = NULL;
-
-    split(*t, &l, &r, pos-1, 0);
-    merge(&l, l, newt);
-    merge(t, l, r);
-    //Operate(t);
+    else{
+        _Insert(t, prior, pos);
+    }
 }
 
 void Delete(tnode**t, int k){
@@ -70,6 +58,7 @@ void Delete(tnode**t, int k){
     split(*t, &l, &r, k-1, 0);
     split(r, &m, &r, 0, 0);
     merge(t, l, r);
+    Operate(t);
 }
 
 int QueryLargest(tnode*t, int kL , int kR){
@@ -90,6 +79,39 @@ int QueryLargest(tnode*t, int kL , int kR){
 
 
 /**Helper function**/
+
+/** Insert node with priority `prior` at position `pos`
+ * @note pos>=0. This function can not insert at beginning.Use @ref _Insert_at_start instead.
+*/
+void _Insert(tnode**t, int prior, int pos){
+    //set new node
+    tnode* newt = setNewNode(prior);
+    newt->key = pos;
+    newt->val = prior;
+    newt->max = prior;
+
+    if(*t==NULL){
+        *t = newt;
+        return;
+    }
+    
+    tnode* l = NULL;
+    tnode* r = NULL;
+
+    split(*t, &l, &r, pos, 0);
+    merge(&l, l, newt);
+    merge(t, l, r);
+    Operate(t);
+}
+
+void _Insert_at_start(tnode**t, int prior){
+    int first_prior = get_val_at_pos(*t, 0);
+    _Insert(t, prior, 0);
+    Delete(t, 0);
+    _Insert(t, first_prior, 0);
+}
+
+
 tnode* setNewNode(int val){
     tnode* newt = &tnodeArr[Nnode];
     ++Nnode;
@@ -164,6 +186,8 @@ void push(tnode*t){
         t->max = max(t->val, t->leaf[LEFT]->max);
     if(t->leaf[RIGHT] != NULL)
         t->max = max(t->val, t->leaf[RIGHT]->max);
+    if(t->leaf[LEFT] == NULL && t->leaf[RIGHT] == NULL)
+        t->max = t->val;
     
     //Reverse
     if(t->rev)

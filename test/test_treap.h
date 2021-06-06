@@ -49,6 +49,30 @@ void test_build(void){
     clear_nodes();
 }
 
+void test_insert_at_start(void){
+    init_nodes();
+
+    int len = 10;
+    int n=100;
+    int p[] = {7,2,1,2,4,-12,2,2,2,2};
+    int EST;
+
+    tnode* t = build_treap(p, len);
+
+    Insert(&t, 99,1);
+    int MAX = QueryLargest(t, 0, len);
+    TEST_CHECK(MAX == 99);
+    TEST_MSG("Got: %d; Real: %d", MAX, 99);
+
+    Insert(&t, n, -1);
+    print_tree(t);
+    MAX = QueryLargest(t, 0, len);
+    TEST_CHECK(MAX == n);
+    TEST_MSG("Got: %d; Real: %d", MAX, n);
+
+    clear_nodes();
+}
+
 
 void test_delete(void){
     init_nodes();

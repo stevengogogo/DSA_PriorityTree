@@ -29,24 +29,16 @@ void tree_validate(tnode* t, int* c){
 
 int main()
 {
-    init_nodes();
+  init_nodes();
 
-    //Build tree
     int len = 10;
+    int n=100;
     int p[] = {7,2,1,2,4,-12,2,2,2,2};
+    int EST;
+
     tnode* t = build_treap(p, len);
-
-    Delete(&t, 0);
-
-    //Test largest
-    int MAX = QueryLargest(t, 0, len-1);
-   
-    //Delete All
-    for(int i=1;i<len;i++){
-        Delete(&t, 0);
-    }
-
-
+    Insert(&t, n, -1);
+    int MAX = QueryLargest(t, 0, len);
 
     clear_nodes();
 
