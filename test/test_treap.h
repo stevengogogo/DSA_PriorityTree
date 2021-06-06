@@ -152,7 +152,7 @@ void test_reverse(void){
 }
 
 void test_find_largest(void){
-       init_nodes();
+    init_nodes();
 
     //Build tree
     int len = 10;
@@ -176,6 +176,7 @@ void test_find_largest(void){
 }
 
 void test_remove_largest(void){
+    init_nodes();
     //Build tree
     int len = 10;
     int p[] = {7,2,1,2,14,-12,2,2,2,2};
