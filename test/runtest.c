@@ -16,5 +16,7 @@ TEST_LIST = {
     {"Treap: Find largest position (with minimum key)", test_find_largest},
     {"Treap: Remove Largest", test_remove_largest},
     {"Treap: Maximum Consistency", test_maximum},
+    {"Treap: Maximum Consistency 2", test_maximum_2},
+    {"Treap: Maximum Consistency (Random)", test_maximum_random},
     {NULL, NULL} // Terminate the test
 };
