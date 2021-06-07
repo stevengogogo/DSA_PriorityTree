@@ -46,7 +46,7 @@ typedef struct node {
 
 
 /***Problem Setup***/
-void interface(void);
+int interface(void);
 tnode* build_treap(int* p, int len);
 
 /****Main Operation****/
@@ -101,5 +101,13 @@ void Operate(tnode** t);
 
 //utils
 void swapTnode(tnode** a, tnode** b);
+
+static void print_tree_q(tnode* t, int len){
+    int val;
+    for(int i=0;i<len;i++){
+        val = get_val_at_pos(t, i);
+        printf("%d ", val);
+    }
+}
 
 #endif

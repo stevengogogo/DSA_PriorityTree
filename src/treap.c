@@ -4,35 +4,80 @@ static int Nnode;
 static tnode* tnodeArr;
 
 // Problem Setup
-void interface(void){
+int interface(void){
     init_nodes();
     int N=0;
     int Q=0;
-
+    int res;
+    int op;
+    int prior,k,l,r;
+    int num_node;
     //Setup N/Q
     scanf("%d%d",&N, &Q);
+    num_node = N;
     
     //Set initial priorities
-    int* p = (int*)malloc(N*sizeof(int)+1);
-    for(int i=1;i<=N;i++)
+    int* p = (int*)malloc(N*sizeof(int));
+    for(int i=0;i<N;i++)
         scanf("%d", &p[i]);
 
     //Inital Treap
-    build_treap(p, N);
+    tnode* t = build_treap(p, N);
 
     //Operation
     for(int i=0;i<Q;i++){
-        //TODO
+        scanf("%d", &op);
+        if(op == 1){
+            scanf("%d", &prior);
+            scanf("%d", &k);
+            Insert(&t, prior, k-1);
+            ++num_node;
+        }
+        else if(op==2){
+            scanf("%d", &k);
+            Delete(&t, k-1);
+            --num_node;
+        }
+        else if(op==3){
+            scanf("%d", &l);
+            scanf("%d", &r);
+            scanf("%d", &prior);
+            Increase(t, l-1, r-1, prior);
+        }
+        else if(op==4){
+            scanf("%d", &l);
+            scanf("%d", &r);
+            res = QueryLargest(t, l-1 ,r-1);
+            printf("%d", res);
+            if(i!= Q-1){
+                printf("\n");
+            }
+        }
+        else if(op==5){
+            scanf("%d", &l);
+            scanf("%d", &r);
+            Reverse(&t, l-1 ,r-1);
+        }
+        else if(op==6){
+            Remove(&t);
+            --num_node;
+        }
+        else{//Error
+            clear_nodes();
+            return -1;
+        }
     }
 
     clear_nodes();
+
+    return 0;
 }
 
 tnode* build_treap(int* p, int len){
     tnode* t = NULL;
 
     for(int k=0;k<len;k++){
-        Insert(&t, p[k], k+1);
+        Insert(&t, p[k], k);
     }
     return t;
 }
@@ -214,6 +259,13 @@ tnode* find_largest_minpos(tnode* t){
             t = find_largest_minpos(t->leaf[LEFT]);
         }
     }
+    else if(t->leaf[RIGHT] != NULL){
+        push(t->leaf[RIGHT]);
+        if(t->leaf[RIGHT]->max >= t->max){
+            t = find_largest_minpos(t->leaf[RIGHT]);
+        }
+    }
+
 
 
     return t;
