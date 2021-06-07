@@ -259,6 +259,13 @@ tnode* find_largest_minpos(tnode* t){
             t = find_largest_minpos(t->leaf[LEFT]);
         }
     }
+    else if(t->leaf[RIGHT] != NULL){
+        push(t->leaf[RIGHT]);
+        if(t->leaf[RIGHT]->max >= t->max){
+            t = find_largest_minpos(t->leaf[RIGHT]);
+        }
+    }
+
 
 
     return t;
