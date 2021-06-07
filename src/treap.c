@@ -182,7 +182,7 @@ void _Insert(tnode**t, int prior, int pos){
     split(*t, &l, &r, pos, 0);
     merge(&l, l, newt);
     merge(t, l, r);
-    Operate(t);
+    //Operate(t);
 }
 
 void _Insert_at_start(tnode**t, int prior){
@@ -421,6 +421,7 @@ void Operate(tnode** t){
     if(!*t)
         return;
     reset(*t);
+    push(*t);
     push((*t)->leaf[LEFT]);
     push((*t)->leaf[RIGHT]);
 
