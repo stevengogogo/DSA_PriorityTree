@@ -219,8 +219,10 @@ void test_maximum(void){
 void test_maximum_2(void){
     init_nodes();
     //Build tree
-    int len = 20;
-    int ps[] = {735573868,347547534,1824577745,261514237,1229051511,1024862469,1522337286,526695885,90597161,217818444,1056982601,1004523288,904225055,1073631473,1990265100,1093024507,1228905414,1906923847,2146268630,583308853};
+    int ps[] = {18300, 29753, 2980, 22690, -7762, -4779, -25393, 29411, -1922, -29893, -25148, -15353, -5610, -3094, -10506};
+    //int len = 10;
+    //int* ps = gen_vec_rand(len);
+    int len = sizeof(ps)/sizeof(ps[0]);
     int MAX;
     int real;
     //Build tree by adding one by one
@@ -234,15 +236,16 @@ void test_maximum_2(void){
         TEST_MSG("Got: %d ; Real: %d at i=%d", MAX, real,k);
     }
 
+    print_vec(ps, len);
 
     clear_nodes();
 }
 
 
 void test_maximum_random(void){
-    init_nodes();
     //Build tree
-    int len = 3;
+    init_nodes();
+    int len = 5;
     int* ps = gen_vec_rand(len);
     int MAX;
     int real;
@@ -250,7 +253,7 @@ void test_maximum_random(void){
     tnode* t = NULL;
     int valid = 1;
 
-    for(int A=0;A<100;A++){
+
 
     for(int k=0;k<len;k++){
         Insert(&t, ps[k], k);
@@ -267,11 +270,6 @@ void test_maximum_random(void){
         printf("\n");
         print_vec(ps, len);
         printf("\n");
-    }
-
-    if(!valid){
-        break;
-    }
     }
 
 
