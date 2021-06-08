@@ -13,6 +13,7 @@
 #include "treap.h"
 #include "acutest.h"
 #include "stdbool.h"
+#include <time.h>
 
 static void tree_validate(tnode* t, int* c){
     if (t==NULL)
@@ -74,6 +75,36 @@ static void check_heap(tnode* t){
     check_heap(t->leaf[RIGHT]);
 }
 
+static int* gen_vec_rand(int len){
+    srand(time(NULL));   
+    int r = rand() % 100;    
+    int* ps = (int*)malloc(len*sizeof(int));
 
+    for(int i=0;i<len;i++){
+        r = rand() % 100;
+        ps[i] = r;
+    }
+
+    return ps;
+}
+
+static int max_vec(int* ps, int a, int b){
+    int MAX= ps[0];
+    for(int i=a;i<=b;i++){
+        if(MAX<ps[i]){
+            MAX = ps[i];
+        }
+    }
+    return MAX;
+}
+
+static int print_vec(int* ps, int len){
+    for(int i=0; i<len;i++){
+        printf("%d", ps[i]);
+        if(i!=len-1){
+            printf(",");
+        }
+    }
+}
 
 #endif 

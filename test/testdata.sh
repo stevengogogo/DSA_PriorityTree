@@ -3,7 +3,7 @@
 echo ""
 echo "$(tput setaf 2; tput bold)Start test: Input/Output $(tput sgr0)"
 
-for i in {0..2};
+for i in {0..3};
 do
     echo ""
     echo "$(tput setaf 5)Test File: $i.in$(tput sgr0)";

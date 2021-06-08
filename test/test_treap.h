@@ -201,16 +201,79 @@ void test_remove_largest(void){
 
 
 void test_maximum(void){
+
+    /*TEST 1*/
     init_nodes();
     //Build tree
-    int len = 11;
     int p[] = {2,1,-2,3,14,-12,2,2,30000,2,2};
+    int len = sizeof(p)/sizeof(p[0]);
     tnode* t = build_treap(p, len);
     int max = QueryLargest(t,0,len-1);
 
     TEST_CHECK(max == 30000);
     TEST_MSG("Got: %d", max);
 
+    clear_nodes();
+}
+
+void test_maximum_2(void){
+    init_nodes();
+    //Build tree
+    int ps[] = {18300, 29753, 2980, 22690, -7762, -4779, -25393, 29411, -1922, -29893, -25148, -15353, -5610, -3094, -10506};
+    //int len = 10;
+    //int* ps = gen_vec_rand(len);
+    int len = sizeof(ps)/sizeof(ps[0]);
+    int MAX;
+    int real;
+    //Build tree by adding one by one
+    tnode* t = NULL;
+
+    for(int k=0;k<len;k++){
+        Insert(&t, ps[k], k);
+        MAX = QueryLargest(t, 0, k);
+        real = max_vec(ps, 0, k);
+        TEST_CHECK(MAX == real);
+        TEST_MSG("Got: %d ; Real: %d at i=%d", MAX, real,k);
+    }
+
+    print_vec(ps, len);
+
+    clear_nodes();
+}
+
+
+void test_maximum_random(void){
+    //Build tree
+    init_nodes();
+    int len = 5;
+    int* ps = gen_vec_rand(len);
+    int MAX;
+    int real;
+    //Build tree by adding one by one
+    tnode* t = NULL;
+    int valid = 1;
+
+
+
+    for(int k=0;k<len;k++){
+        Insert(&t, ps[k], k);
+        MAX = QueryLargest(t, 0, k);
+        real = max_vec(ps, 0, k);
+        TEST_CHECK(MAX == real);
+        TEST_MSG("Got: %d ; Real: %d at i=%d", MAX, real,k);
+
+        if(MAX!=real)
+            valid = 0;
+    }
+
+    if(!valid){
+        printf("\n");
+        print_vec(ps, len);
+        printf("\n");
+    }
+
+
+    free(ps);
     clear_nodes();
 }
 
