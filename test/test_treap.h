@@ -205,8 +205,8 @@ void test_maximum(void){
     /*TEST 1*/
     init_nodes();
     //Build tree
-    int len = 11;
     int p[] = {2,1,-2,3,14,-12,2,2,30000,2,2};
+    int len = sizeof(p)/sizeof(p[0]);
     tnode* t = build_treap(p, len);
     int max = QueryLargest(t,0,len-1);
 

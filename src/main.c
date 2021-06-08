@@ -40,29 +40,18 @@ static int print_vec(int* ps, int len){
 
 int main()
 {   
+    /*
     init_nodes();
     //Build tree
-    int ps[] = {18300, 29753, 2980, 22690, -7762, -4779, -25393, 29411, -1922, -29893, -25148, -15353, -5610, -3094, -10506};
-    //int len = 10;
-    //int* ps = gen_vec_rand(len);
-    int len = sizeof(ps)/sizeof(ps[0]);
-    int MAX;
-    int real;
-    //Build tree by adding one by one
-    tnode* t = NULL;
+    int p[] = {2,1,-2,3,14,-12,2,2,30000,2,2};
+    int len = sizeof(p)/sizeof(p[0]);
+    tnode* t = build_treap(p, len);
+    int max = QueryLargest(t,0,len-1);
 
-    for(int k=0;k<len;k++){
-        Insert(&t, ps[k], k);
-        MAX = QueryLargest(t, 0, k);
-        real = max_vec(ps, 0, k);
-        if(MAX != real)
-            printf("r");
-        //TEST_MSG("Got: %d ; Real: %d at i=%d", MAX, real,k);
-    }
-
-    print_vec(ps, len);
+    //TEST_CHECK(max == 30000);
+    //TEST_MSG("Got: %d", max);
 
     clear_nodes();
-    return 0;
-    //return interface();
+    */
+    return interface();
 }

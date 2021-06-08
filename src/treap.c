@@ -131,7 +131,7 @@ int QueryLargest(tnode*t, int kL , int kR){
 	split(r, &m, &r, kR - kL,0);
 
     tnode* x = find_largest_minpos(m);
-	int answer = x->max;
+	int answer = x->val;
 
     merge(&r, m, r);
     merge(&t, l, r);
@@ -261,9 +261,10 @@ tnode* find_largest_minpos(tnode* t){
             push(t->leaf[i]);
     }
     */
+   //push(t);
 
     if(t->leaf[LEFT] != NULL && t->leaf[RIGHT] != NULL){
-        if(t->max <= t->leaf[LEFT]->max || t->max < t->leaf[RIGHT]->max){
+        if(t->val <= t->leaf[LEFT]->max || t->val < t->leaf[RIGHT]->max){
         int dir = argmax(t->leaf[LEFT]->max, t->leaf[RIGHT]->max);
         t = find_largest_minpos(t->leaf[dir]);
         }
@@ -271,13 +272,13 @@ tnode* find_largest_minpos(tnode* t){
 
     
     if(t->leaf[LEFT] != NULL && t->leaf[RIGHT] == NULL){
-        if(t->max <= t->leaf[LEFT]->max){
+        if(t->val <= t->leaf[LEFT]->max){
             t = find_largest_minpos(t->leaf[LEFT]);
         }
     }
 
     if(t->leaf[RIGHT] != NULL && t->leaf[LEFT] == NULL){
-        if(t->max <= t->leaf[RIGHT]->max && t->max != t->val){
+        if(t->val <= t->leaf[RIGHT]->max){
             t = find_largest_minpos(t->leaf[RIGHT]);
         }
     }
@@ -311,11 +312,11 @@ void push(tnode*t){
 
     //Max
     if(t->leaf[LEFT] != NULL){
-        t->max = max(t->val, t->leaf[LEFT]->max);
+        t->max = max(t->max, t->leaf[LEFT]->max);
         t->leaf[LEFT]->lazy += t->lazy;
     }
     if(t->leaf[RIGHT] != NULL){
-        t->max = max(t->val, t->leaf[RIGHT]->max);
+        t->max = max(t->max, t->leaf[RIGHT]->max);
         t->leaf[RIGHT]->lazy += t->lazy;
     }
     if(t->leaf[LEFT] == NULL && t->leaf[RIGHT] == NULL){
