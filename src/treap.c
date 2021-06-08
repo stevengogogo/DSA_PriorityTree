@@ -336,7 +336,7 @@ void combine(tnode** t, tnode* l, tnode* r){
     }
     else{
         (*t)->sum = l->sum + r->sum;
-        (*t)->max = max((*t)->max ,max(l->max, r->max));
+        (*t)->max = max(l->max, r->max);
     }
 }
 
