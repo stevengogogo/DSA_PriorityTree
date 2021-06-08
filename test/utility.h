@@ -77,11 +77,11 @@ static void check_heap(tnode* t){
 
 static int* gen_vec_rand(int len){
     srand(time(NULL));   
-    int r = rand();    
+    int r = rand() % 100;    
     int* ps = (int*)malloc(len*sizeof(int));
 
     for(int i=0;i<len;i++){
-        r = rand();
+        r = rand() % 100;
         ps[i] = r;
     }
 
