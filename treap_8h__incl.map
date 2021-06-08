@@ -1,6 +1,7 @@
 <map id="src/treap.h" name="src/treap.h">
-<area shape="rect" id="node1" title="Implicit Treap Implementation." alt="" coords="79,5,162,32"/>
+<area shape="rect" id="node1" title="Implicit Treap Implementation." alt="" coords="123,5,206,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,80,65,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="89,80,152,107"/>
-<area shape="rect" id="node4" href="$utils_8h.html" title="General Utilities for C language." alt="" coords="177,80,233,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="176,80,244,107"/>
+<area shape="rect" id="node5" href="$utils_8h.html" title="General Utilities for C language." alt="" coords="269,80,325,107"/>
 </map>

@@ -75,91 +75,92 @@ $(function() {
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="utils_8h.html">utils.h</a>&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define MAX_NODE 1600000</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define LEFT 0</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define RIGHT 1</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="utils_8h.html">utils.h</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define MAX_NODE 1600000</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define LEFT 0</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define RIGHT 1</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structnode.html">   33</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structnode.html">node</a> {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">int</span> pt;<span class="comment">//for heap arrangement</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">int</span> key;<span class="comment">//book position [implicit]</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">int</span> rev; <span class="comment">//reverse</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">int</span> lazy;<span class="comment">//waiting operation</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">int</span> size;<span class="comment">//number of nodes under it</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">int</span> val; <span class="comment">// book priority</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">int</span> max;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">int</span> sum; <span class="comment">// summation under the node</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">struct </span><a class="code" href="structnode.html">node</a> *parent;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">struct </span><a class="code" href="structnode.html">node</a> *leaf[2];</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">   44</a></span>&#160;} <a class="code" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structnode.html">   34</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structnode.html">node</a> {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">int</span> pt;<span class="comment">//for heap arrangement</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">int</span> key;<span class="comment">//book position [implicit]</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">int</span> rev; <span class="comment">//reverse</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">int</span> lazy;<span class="comment">//waiting operation</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">int</span> size;<span class="comment">//number of nodes under it</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">int</span> val; <span class="comment">// book priority</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">int</span> max;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">int</span> sum; <span class="comment">// summation under the node</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">struct </span><a class="code" href="structnode.html">node</a> *parent;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">struct </span><a class="code" href="structnode.html">node</a> *leaf[2];</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">   45</a></span>&#160;} <a class="code" href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a>;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">/***Problem Setup***/</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">int</span> interface(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<a class="code" href="structnode.html">tnode</a>* build_treap(<span class="keywordtype">int</span>* p, <span class="keywordtype">int</span> len);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">/****Main Operation****/</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">void</span> Insert(<a class="code" href="structnode.html">tnode</a>**t, <span class="keywordtype">int</span> prior, <span class="keywordtype">int</span> pos);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> Delete(<a class="code" href="structnode.html">tnode</a>**t, <span class="keywordtype">int</span> k);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> Increase(<a class="code" href="structnode.html">tnode</a>*t, <span class="keywordtype">int</span> pL, <span class="keywordtype">int</span> pR, <span class="keywordtype">int</span> priorD);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">int</span> <a class="code" href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a>(<a class="code" href="structnode.html">tnode</a>*t, <span class="keywordtype">int</span> l , <span class="keywordtype">int</span> r);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">void</span> Reverse(<a class="code" href="structnode.html">tnode</a>**t, <span class="keywordtype">int</span> l, <span class="keywordtype">int</span> r);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span> Remove(<a class="code" href="structnode.html">tnode</a>**t);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span> <a class="code" href="treap_8h.html#a17e8f48e645666115ccc87a82ab4e4e1">_Insert</a>(<a class="code" href="structnode.html">tnode</a>**t, <span class="keywordtype">int</span> prior, <span class="keywordtype">int</span> pos);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">void</span> _Insert_at_start(<a class="code" href="structnode.html">tnode</a>**t, <span class="keywordtype">int</span> prior);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<a class="code" href="structnode.html">tnode</a>* setNewNode(<span class="keywordtype">int</span> p);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">int</span> get_val_at_pos(<a class="code" href="structnode.html">tnode</a>* t, <span class="keywordtype">int</span> pos);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">int</span> get_node_pos(<a class="code" href="structnode.html">tnode</a>* ncur, <a class="code" href="structnode.html">tnode</a>* leaf);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<a class="code" href="structnode.html">tnode</a>* find_largest_minpos(<a class="code" href="structnode.html">tnode</a>* t);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">// Memory Management</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keywordtype">void</span> init_nodes();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">void</span> clear_nodes();</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">/***Problem Setup***/</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">int</span> interface(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<a class="code" href="structnode.html">tnode</a>* build_treap(<span class="keywordtype">int</span>* p, <span class="keywordtype">int</span> len);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">/****Main Operation****/</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> Insert(<a class="code" href="structnode.html">tnode</a>**t, <span class="keywordtype">int</span> prior, <span class="keywordtype">int</span> pos);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> Delete(<a class="code" href="structnode.html">tnode</a>**t, <span class="keywordtype">int</span> k);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> Increase(<a class="code" href="structnode.html">tnode</a>*t, <span class="keywordtype">int</span> pL, <span class="keywordtype">int</span> pR, <span class="keywordtype">int</span> priorD);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">int</span> <a class="code" href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a>(<a class="code" href="structnode.html">tnode</a>*t, <span class="keywordtype">int</span> l , <span class="keywordtype">int</span> r);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span> Reverse(<a class="code" href="structnode.html">tnode</a>**t, <span class="keywordtype">int</span> l, <span class="keywordtype">int</span> r);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">void</span> Remove(<a class="code" href="structnode.html">tnode</a>**t);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">void</span> <a class="code" href="treap_8h.html#a17e8f48e645666115ccc87a82ab4e4e1">_Insert</a>(<a class="code" href="structnode.html">tnode</a>**t, <span class="keywordtype">int</span> prior, <span class="keywordtype">int</span> pos);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">void</span> _Insert_at_start(<a class="code" href="structnode.html">tnode</a>**t, <span class="keywordtype">int</span> prior);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<a class="code" href="structnode.html">tnode</a>* setNewNode(<span class="keywordtype">int</span> p);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">int</span> get_val_at_pos(<a class="code" href="structnode.html">tnode</a>* t, <span class="keywordtype">int</span> pos);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">int</span> get_node_pos(<a class="code" href="structnode.html">tnode</a>* ncur, <a class="code" href="structnode.html">tnode</a>* leaf);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<a class="code" href="structnode.html">tnode</a>* find_largest_minpos(<a class="code" href="structnode.html">tnode</a>* t);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">// Memory Management</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">void</span> init_nodes();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">void</span> clear_nodes();</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">/****Treap Operation****/</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">void</span> <a class="code" href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a>(<a class="code" href="structnode.html">tnode</a>* t);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">void</span> reset(<a class="code" href="structnode.html">tnode</a>* t);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">void</span> combine(<a class="code" href="structnode.html">tnode</a>** t, <a class="code" href="structnode.html">tnode</a>* l, <a class="code" href="structnode.html">tnode</a>* r);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">// Split and Merge</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">void</span> split(<a class="code" href="structnode.html">tnode</a>* t, <a class="code" href="structnode.html">tnode</a>** lt, <a class="code" href="structnode.html">tnode</a>** rt, <span class="keywordtype">int</span> key, <span class="keywordtype">int</span> add);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">void</span> <a class="code" href="treap_8h.html#a2e060c3f9e770576d214a9fd39823094">merge</a>(<a class="code" href="structnode.html">tnode</a>** t, <a class="code" href="structnode.html">tnode</a>* lt, <a class="code" href="structnode.html">tnode</a>* rt);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">/****Treap Operation****/</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">void</span> <a class="code" href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a>(<a class="code" href="structnode.html">tnode</a>* t);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">void</span> reset(<a class="code" href="structnode.html">tnode</a>* t);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">void</span> combine(<a class="code" href="structnode.html">tnode</a>** t, <a class="code" href="structnode.html">tnode</a>* l, <a class="code" href="structnode.html">tnode</a>* r);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">// Split and Merge</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">void</span> split(<a class="code" href="structnode.html">tnode</a>* t, <a class="code" href="structnode.html">tnode</a>** lt, <a class="code" href="structnode.html">tnode</a>** rt, <span class="keywordtype">int</span> key, <span class="keywordtype">int</span> add);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">void</span> <a class="code" href="treap_8h.html#a2e060c3f9e770576d214a9fd39823094">merge</a>(<a class="code" href="structnode.html">tnode</a>** t, <a class="code" href="structnode.html">tnode</a>* lt, <a class="code" href="structnode.html">tnode</a>* rt);</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">//node info</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">int</span> size(<a class="code" href="structnode.html">tnode</a>* t);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">//update</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">void</span> updateRoot(<a class="code" href="structnode.html">tnode</a>* t);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keywordtype">void</span> <a class="code" href="treap_8h.html#a08073cd1252b96f74bb5714c4347276e">UpdateLeafParent</a>(<a class="code" href="structnode.html">tnode</a>* t);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keywordtype">void</span> <a class="code" href="treap_8h.html#a57648cfd389c2bf31fea6cef3648be5c">UpdateSize</a>(<a class="code" href="structnode.html">tnode</a>* t);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keywordtype">void</span> Operate(<a class="code" href="structnode.html">tnode</a>** t);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">//utils</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keywordtype">void</span> swapTnode(<a class="code" href="structnode.html">tnode</a>** a, <a class="code" href="structnode.html">tnode</a>** b);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> print_tree_q(<a class="code" href="structnode.html">tnode</a>* t, <span class="keywordtype">int</span> len){</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">int</span> val;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;len;i++){</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        val = get_val_at_pos(t, i);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        printf(<span class="stringliteral">&quot;%d &quot;</span>, val);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;}</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructnode_html"><div class="ttname"><a href="structnode.html">node</a></div><div class="ttdef"><b>Definition:</b> treap.h:33</div></div>
-<div class="ttc" id="atreap_8h_html_a08073cd1252b96f74bb5714c4347276e"><div class="ttname"><a href="treap_8h.html#a08073cd1252b96f74bb5714c4347276e">UpdateLeafParent</a></div><div class="ttdeci">void UpdateLeafParent(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:405</div></div>
-<div class="ttc" id="atreap_8h_html_a17e8f48e645666115ccc87a82ab4e4e1"><div class="ttname"><a href="treap_8h.html#a17e8f48e645666115ccc87a82ab4e4e1">_Insert</a></div><div class="ttdeci">void _Insert(tnode **t, int prior, int pos)</div><div class="ttdef"><b>Definition:</b> treap.c:167</div></div>
-<div class="ttc" id="atreap_8h_html_a2e060c3f9e770576d214a9fd39823094"><div class="ttname"><a href="treap_8h.html#a2e060c3f9e770576d214a9fd39823094">merge</a></div><div class="ttdeci">void merge(tnode **t, tnode *lt, tnode *rt)</div><div class="ttdoc">Merge two treaps. Assume all kets in rt &gt; lt.</div><div class="ttdef"><b>Definition:</b> treap.c:367</div></div>
-<div class="ttc" id="atreap_8h_html_a57648cfd389c2bf31fea6cef3648be5c"><div class="ttname"><a href="treap_8h.html#a57648cfd389c2bf31fea6cef3648be5c">UpdateSize</a></div><div class="ttdeci">void UpdateSize(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:415</div></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">//node info</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keywordtype">int</span> size(<a class="code" href="structnode.html">tnode</a>* t);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">//update</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keywordtype">void</span> updateRoot(<a class="code" href="structnode.html">tnode</a>* t);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keywordtype">void</span> <a class="code" href="treap_8h.html#a08073cd1252b96f74bb5714c4347276e">UpdateLeafParent</a>(<a class="code" href="structnode.html">tnode</a>* t);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keywordtype">void</span> <a class="code" href="treap_8h.html#a57648cfd389c2bf31fea6cef3648be5c">UpdateSize</a>(<a class="code" href="structnode.html">tnode</a>* t);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keywordtype">void</span> Operate(<a class="code" href="structnode.html">tnode</a>** t);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">//utils</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keywordtype">void</span> swapTnode(<a class="code" href="structnode.html">tnode</a>** a, <a class="code" href="structnode.html">tnode</a>** b);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> print_tree_q(<a class="code" href="structnode.html">tnode</a>* t, <span class="keywordtype">int</span> len){</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">int</span> val;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0;i&lt;len;i++){</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        val = get_val_at_pos(t, i);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        printf(<span class="stringliteral">&quot;%d &quot;</span>, val);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astructnode_html"><div class="ttname"><a href="structnode.html">node</a></div><div class="ttdef"><b>Definition:</b> treap.h:34</div></div>
+<div class="ttc" id="atreap_8h_html_a08073cd1252b96f74bb5714c4347276e"><div class="ttname"><a href="treap_8h.html#a08073cd1252b96f74bb5714c4347276e">UpdateLeafParent</a></div><div class="ttdeci">void UpdateLeafParent(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:422</div></div>
+<div class="ttc" id="atreap_8h_html_a17e8f48e645666115ccc87a82ab4e4e1"><div class="ttname"><a href="treap_8h.html#a17e8f48e645666115ccc87a82ab4e4e1">_Insert</a></div><div class="ttdeci">void _Insert(tnode **t, int prior, int pos)</div><div class="ttdef"><b>Definition:</b> treap.c:168</div></div>
+<div class="ttc" id="atreap_8h_html_a2e060c3f9e770576d214a9fd39823094"><div class="ttname"><a href="treap_8h.html#a2e060c3f9e770576d214a9fd39823094">merge</a></div><div class="ttdeci">void merge(tnode **t, tnode *lt, tnode *rt)</div><div class="ttdoc">Merge two treaps. Assume all kets in rt &gt; lt.</div><div class="ttdef"><b>Definition:</b> treap.c:384</div></div>
+<div class="ttc" id="atreap_8h_html_a57648cfd389c2bf31fea6cef3648be5c"><div class="ttname"><a href="treap_8h.html#a57648cfd389c2bf31fea6cef3648be5c">UpdateSize</a></div><div class="ttdeci">void UpdateSize(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:432</div></div>
 <div class="ttc" id="atreap_8h_html_a6636acf7ab562ea031f376a99a055654"><div class="ttname"><a href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a></div><div class="ttdeci">int QueryLargest(tnode *t, int l, int r)</div><div class="ttdef"><b>Definition:</b> treap.c:125</div></div>
 <div class="ttc" id="atreap_8h_html_ab7767888cfea8af07851e50456e4e0d8"><div class="ttname"><a href="treap_8h.html#ab7767888cfea8af07851e50456e4e0d8">tnode</a></div><div class="ttdeci">struct node tnode</div></div>
-<div class="ttc" id="atreap_8h_html_af5ce0c13f2d5a3d7a7ff3dfc437c77de"><div class="ttname"><a href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a></div><div class="ttdeci">void push(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:290</div></div>
+<div class="ttc" id="atreap_8h_html_af5ce0c13f2d5a3d7a7ff3dfc437c77de"><div class="ttname"><a href="treap_8h.html#af5ce0c13f2d5a3d7a7ff3dfc437c77de">push</a></div><div class="ttdeci">void push(tnode *t)</div><div class="ttdef"><b>Definition:</b> treap.c:307</div></div>
 <div class="ttc" id="autils_8h_html"><div class="ttname"><a href="utils_8h.html">utils.h</a></div><div class="ttdoc">General Utilities for C language.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
