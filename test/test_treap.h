@@ -219,8 +219,8 @@ void test_maximum(void){
 void test_maximum_2(void){
     init_nodes();
     //Build tree
-    int len = 5;
-    int ps[] = {728646943,1339021615,1408402352,1432537527,2085878327};
+    int len = 20;
+    int ps[] = {735573868,347547534,1824577745,261514237,1229051511,1024862469,1522337286,526695885,90597161,217818444,1056982601,1004523288,904225055,1073631473,1990265100,1093024507,1228905414,1906923847,2146268630,583308853};
     int MAX;
     int real;
     //Build tree by adding one by one
@@ -242,7 +242,7 @@ void test_maximum_2(void){
 void test_maximum_random(void){
     init_nodes();
     //Build tree
-    int len = 5;
+    int len = 3;
     int* ps = gen_vec_rand(len);
     int MAX;
     int real;

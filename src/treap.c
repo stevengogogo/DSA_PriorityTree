@@ -202,6 +202,7 @@ tnode* setNewNode(int val){
     newt->val = val;
     newt->sum = val;
     newt->max = val;
+    newt->lazy = 0;
     //Default
     newt->parent = NULL;
     newt->leaf[LEFT] = NULL;
@@ -335,7 +336,7 @@ void combine(tnode** t, tnode* l, tnode* r){
     }
     else{
         (*t)->sum = l->sum + r->sum;
-        (*t)->max = max(l->max, r->max);
+        (*t)->max = max((*t)->max ,max(l->max, r->max));
     }
 }
 
