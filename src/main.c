@@ -3,7 +3,7 @@
 #include "treap.h"
 #include <time.h>
 #include <assert.h>
-
+#include "PriorityTree.h"
 
 static int* gen_vec_rand(int len){
     srand(time(NULL));   
@@ -53,5 +53,6 @@ int main()
 
     clear_nodes();
     */
-    return interface();
+    interface_arr();
+    return 0;
 }
