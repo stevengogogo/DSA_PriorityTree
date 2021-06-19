@@ -1,7 +1,9 @@
 <map id="src/utils.h" name="src/utils.h">
-<area shape="rect" id="node1" title="General Utilities for C language." alt="" coords="84,5,163,32"/>
-<area shape="rect" id="node2" href="$treap_8h.html" title="Implicit Treap Implementation." alt="" coords="22,80,105,107"/>
-<area shape="rect" id="node5" href="$test__utils_8h_source.html" title=" " alt="" coords="129,80,240,107"/>
-<area shape="rect" id="node3" href="$test__treap_8h.html" title="Test Treap operation." alt="" coords="5,229,121,256"/>
-<area shape="rect" id="node4" href="$utility_8h.html" title="Helper function for testing." alt="" coords="61,155,149,181"/>
+<area shape="rect" id="node1" title="General Utilities for C language." alt="" coords="215,5,293,32"/>
+<area shape="rect" id="node2" href="$array_8h_source.html" title=" " alt="" coords="253,80,335,107"/>
+<area shape="rect" id="node3" href="$PriorityTree_8h_source.html" title=" " alt="" coords="173,155,293,181"/>
+<area shape="rect" id="node4" href="$test__utils_8h_source.html" title=" " alt="" coords="317,155,428,181"/>
+<area shape="rect" id="node5" href="$treap_8h.html" title="Implicit Treap Implementation." alt="" coords="79,80,162,107"/>
+<area shape="rect" id="node6" href="$test__treap_8h.html" title="Test Treap operation." alt="" coords="5,229,121,256"/>
+<area shape="rect" id="node7" href="$utility_8h.html" title="Helper function for testing." alt="" coords="61,155,149,181"/>
 </map>

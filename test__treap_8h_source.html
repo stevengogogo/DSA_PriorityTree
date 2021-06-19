@@ -339,10 +339,36 @@ $(function() {
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    clear_nodes();</div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;}</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160; </div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160; </div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="keywordtype">void</span> test_remove_2(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    init_nodes();</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <span class="comment">//Build tree</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <span class="keywordtype">int</span> ps[] = {18300, 29753, 2980, 22690, -7762, -4779, -25393, 29411, -1922, -29893, -25148, -15353, -5610, -3094, -10506};</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="comment">//int len = 10;</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    <span class="comment">//int* ps = gen_vec_rand(len);</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <span class="keywordtype">int</span> len = <span class="keyword">sizeof</span>(ps)/<span class="keyword">sizeof</span>(ps[0]);</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <span class="keywordtype">int</span> MAX;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <span class="keywordtype">int</span> real;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <span class="comment">//Build tree by adding one by one</span></div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <a class="code" href="structnode.html">tnode</a>* t = build_treap(ps, len);</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160; </div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    Increase(t, 6, 10, 10000);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    Insert(&amp;t, 29410, 8);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    Remove(&amp;t);</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    TEST_CHECK(<a class="code" href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a>(t, 0,len-1) == 29753);</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160; </div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    </div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160; </div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    print_vec(ps, len);</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160; </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    clear_nodes();</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;}</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160; </div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="astructnode_html"><div class="ttname"><a href="structnode.html">node</a></div><div class="ttdef"><b>Definition:</b> treap.h:34</div></div>
 <div class="ttc" id="atreap_8h_html"><div class="ttname"><a href="treap_8h.html">treap.h</a></div><div class="ttdoc">Implicit Treap Implementation.</div></div>
-<div class="ttc" id="atreap_8h_html_a6636acf7ab562ea031f376a99a055654"><div class="ttname"><a href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a></div><div class="ttdeci">int QueryLargest(tnode *t, int l, int r)</div><div class="ttdef"><b>Definition:</b> treap.c:125</div></div>
+<div class="ttc" id="atreap_8h_html_a6636acf7ab562ea031f376a99a055654"><div class="ttname"><a href="treap_8h.html#a6636acf7ab562ea031f376a99a055654">QueryLargest</a></div><div class="ttdeci">int QueryLargest(tnode *t, int l, int r)</div><div class="ttdef"><b>Definition:</b> treap.c:57</div></div>
 <div class="ttc" id="autility_8h_html"><div class="ttname"><a href="utility_8h.html">utility.h</a></div><div class="ttdoc">Helper function for testing.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
