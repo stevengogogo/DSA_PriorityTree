@@ -3,75 +3,7 @@
 static int Nnode;
 static tnode* tnodeArr;
 
-// Problem Setup
-int interface(void){
-    init_nodes();
-    int N=0;
-    int Q=0;
-    int res;
-    int op;
-    int prior,k,l,r;
-    int num_node;
-    //Setup N/Q
-    scanf("%d%d",&N, &Q);
-    num_node = N;
-    
-    //Set initial priorities
-    int* p = (int*)malloc(N*sizeof(int));
-    for(int i=0;i<N;i++)
-        scanf("%d", &p[i]);
 
-    //Inital Treap
-    tnode* t = build_treap(p, N);
-
-    //Operation
-    for(int i=0;i<Q;i++){
-        scanf("%d", &op);
-        if(op == 1){
-            scanf("%d", &prior);
-            scanf("%d", &k);
-            Insert(&t, prior, k-1);
-            ++num_node;
-        }
-        else if(op==2){
-            scanf("%d", &k);
-            Delete(&t, k-1);
-            --num_node;
-        }
-        else if(op==3){
-            scanf("%d", &l);
-            scanf("%d", &r);
-            scanf("%d", &prior);
-            Increase(t, l-1, r-1, prior);
-        }
-        else if(op==4){
-            scanf("%d", &l);
-            scanf("%d", &r);
-            res = QueryLargest(t, l-1 ,r-1);
-            printf("%d", res);
-            if(i!= Q-1){
-                printf("\n");
-            }
-        }
-        else if(op==5){
-            scanf("%d", &l);
-            scanf("%d", &r);
-            Reverse(&t, l-1 ,r-1);
-        }
-        else if(op==6){
-            Remove(&t);
-            --num_node;
-        }
-        else{//Error
-            clear_nodes();
-            return -1;
-        }
-    }
-
-    clear_nodes();
-
-    return 0;
-}
 
 tnode* build_treap(int* p, int len){
     tnode* t = NULL;
@@ -156,6 +88,8 @@ void Reverse(tnode** t, int pL, int pR){
 void Remove(tnode**t){
     tnode* largest = find_largest_minpos(*t);
     int argmax = get_node_pos(largest, NULL);
+
+    //assert(get_val_at_pos(*t, argmax) == largest->val);
 
     Delete(t, argmax);
 }
@@ -256,13 +190,6 @@ tnode* find_largest_minpos(tnode* t){
     /*
     
 
-    for(int i=0;i<2;i++){
-        if(t->leaf[i] != NULL)
-            push(t->leaf[i]);
-    }
-    */
-   //push(t);
-
     if(t->leaf[LEFT] != NULL && t->leaf[RIGHT] != NULL){
         if(t->val <= t->leaf[LEFT]->max || t->val < t->leaf[RIGHT]->max){
         int dir = argmax(t->leaf[LEFT]->max, t->leaf[RIGHT]->max);
@@ -270,7 +197,6 @@ tnode* find_largest_minpos(tnode* t){
         }
     }
 
-    
     if(t->leaf[LEFT] != NULL && t->leaf[RIGHT] == NULL){
         if(t->val <= t->leaf[LEFT]->max){
             t = find_largest_minpos(t->leaf[LEFT]);

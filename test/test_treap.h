@@ -277,4 +277,30 @@ void test_maximum_random(void){
     clear_nodes();
 }
 
+
+void test_remove_2(void){
+    init_nodes();
+    //Build tree
+    int ps[] = {18300, 29753, 2980, 22690, -7762, -4779, -25393, 29411, -1922, -29893, -25148, -15353, -5610, -3094, -10506};
+    //int len = 10;
+    //int* ps = gen_vec_rand(len);
+    int len = sizeof(ps)/sizeof(ps[0]);
+    int MAX;
+    int real;
+    //Build tree by adding one by one
+    tnode* t = build_treap(ps, len);
+
+    Increase(t, 6, 10, 10000);
+    Insert(&t, 29410, 8);
+    Remove(&t);
+    TEST_CHECK(QueryLargest(t, 0,len-1) == 29753);
+
+    
+
+    print_vec(ps, len);
+
+    clear_nodes();
+}
+
+
 #endif
