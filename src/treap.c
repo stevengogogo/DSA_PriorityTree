@@ -252,9 +252,9 @@ int get_node_pos(tnode*ncur, tnode* leaf){
 }
 
 tnode* find_largest_minpos(tnode* t){
-
-    /*
     push(t);
+    /*
+    
 
     for(int i=0;i<2;i++){
         if(t->leaf[i] != NULL)
