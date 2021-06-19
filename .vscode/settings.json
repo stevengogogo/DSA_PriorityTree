@@ -3,6 +3,7 @@
         "utils.h": "c",
         "array": "c",
         "assert.h": "c",
-        "treap.h": "c"
+        "treap.h": "c",
+        "stdio.h": "c"
     }
 }
