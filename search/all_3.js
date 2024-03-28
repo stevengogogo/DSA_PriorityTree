@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['node_4',['node',['../structnode.html',1,'']]]
+  ['code_0',['Sample Code',['../index.html#autotoc_md19',1,'']]]
 ];

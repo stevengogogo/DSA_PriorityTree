@@ -1,12 +1,26 @@
 <map id="test/test_treap.h" name="test/test_treap.h">
-<area shape="rect" id="node1" title="Test Treap operation." alt="" coords="153,5,269,32"/>
-<area shape="rect" id="node2" href="$treap_8h.html" title="Implicit Treap Implementation." alt="" coords="99,155,161,181"/>
-<area shape="rect" id="node7" href="$utility_8h.html" title="Helper function for testing." alt="" coords="249,80,312,107"/>
-<area shape="rect" id="node8" title=" " alt="" coords="185,155,259,181"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,304,65,331"/>
-<area shape="rect" id="node4" title=" " alt="" coords="91,304,153,331"/>
-<area shape="rect" id="node5" title=" " alt="" coords="179,304,247,331"/>
-<area shape="rect" id="node6" href="$utils_8h.html" title="General Utilities for C language." alt="" coords="70,229,126,256"/>
-<area shape="rect" id="node9" title=" " alt="" coords="283,155,358,181"/>
-<area shape="rect" id="node10" title=" " alt="" coords="383,155,440,181"/>
+<area shape="rect" id="Node000001" title="Test Treap operation." alt="" coords="153,5,269,31"/>
+<area shape="rect" id="Node000002" href="$treap_8h.html" title="Implicit Treap Implementation." alt="" coords="100,153,160,178"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,33,146,140,142,138,202,30"/>
+<area shape="rect" id="Node000007" href="$utility_8h.html" title="Helper function for testing." alt="" coords="248,79,310,105"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="224,29,259,66,255,70,220,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="185,153,259,178"/>
+<area shape="poly" id="edge14_Node000001_Node000008" title=" " alt="" coords="215,31,222,137,217,137,209,32"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,300,65,326"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="111,181,84,201,60,228,47,256,40,285,35,284,42,255,55,225,80,197,107,177"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="91,300,153,326"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="135,179,140,212,140,252,133,286,128,284,135,252,135,212,130,179"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="179,300,246,326"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="139,177,200,285,196,288,134,180"/>
+<area shape="rect" id="Node000006" href="$utils_8h.html" title="General Utilities for C language." alt="" coords="70,226,125,252"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="127,180,112,213,107,211,122,177"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="89,254,58,290,54,286,85,250"/>
+<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="104,251,115,284,110,286,99,253"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="119,250,181,289,178,294,116,255"/>
+<area shape="poly" id="edge10_Node000007_Node000002" title=" " alt="" coords="255,108,170,148,168,143,253,103"/>
+<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="272,107,243,142,239,139,267,103"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="282,153,356,178"/>
+<area shape="poly" id="edge12_Node000007_Node000009" title=" " alt="" coords="288,104,307,138,303,140,283,106"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="380,153,437,178"/>
+<area shape="poly" id="edge13_Node000007_Node000010" title=" " alt="" coords="302,103,374,142,372,147,300,108"/>
 </map>

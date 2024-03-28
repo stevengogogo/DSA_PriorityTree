@@ -1,6 +1,9 @@
 <map id="src/utils.h" name="src/utils.h">
-<area shape="rect" id="node1" title="General Utilities for C language." alt="" coords="88,5,167,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,73,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="97,80,157,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="181,80,244,107"/>
+<area shape="rect" id="Node000001" title="General Utilities for C language." alt="" coords="88,5,166,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,73,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,34,67,71,64,67,110,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="97,79,157,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,31,130,63,124,63,124,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="181,79,244,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="143,29,188,67,185,71,140,34"/>
 </map>

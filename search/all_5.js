@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['querylargest_7',['QueryLargest',['../treap_8h.html#a6636acf7ab562ea031f376a99a055654',1,'treap.c']]]
+  ['first_20position_0',['Get first position',['../index.html#autotoc_md10',1,'']]],
+  ['functions_1',['Helper functions',['../index.html#autotoc_md9',1,'']]]
 ];
